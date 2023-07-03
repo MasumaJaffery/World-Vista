@@ -3,3 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  gap: 2.5rem;
+}
