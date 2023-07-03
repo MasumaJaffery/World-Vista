@@ -88,6 +88,7 @@ HTML+CSS+BOOTSTRAP+JS+GITHUB
 - **[User-Interactive]**
 - **[Adaptability]**
 - **[Performance]**
+- **[Group prject]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
