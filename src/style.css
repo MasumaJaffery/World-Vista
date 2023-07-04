@@ -13,6 +13,16 @@
 .countries {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  padding: 2rem;
+}
+
+.country {
+  margin: 0.6rem;
+}
+
+h5 {
+  text-align: center;
+  padding: 1rem;
 }
 
 .btn {

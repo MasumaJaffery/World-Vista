@@ -10,21 +10,20 @@ const getcountry = async() => {
     }
   }  
   getcountry();
-  
+
   const postcountry = async (data) => {
     const countries = document.querySelector('.countries');
     const country = document.createElement('div');
     country.className = 'country';
     country.innerHTML =
     `<div class="card country" style="width: 18rem;">
-     <img src=${data.flags.svg} class="card-img-top" alt="...">
+     <img src=${data.flags.svg} class="card-img-top" alt="..."  style="object-fit: cover; width: 100%; height: 12rem;>
      <div class="card-body">
-     <h3>${data.name.common}</h3>
-     </div>
+     <h5>${data.name.common}</h5>
      <div class ="comment">
      <button type = "button" class = "btn btn-primary">Comment</button>
+     </div>
      </div>
     </div>`;
     countries.appendChild(country);
 }
-
