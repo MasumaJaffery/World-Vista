@@ -38,3 +38,13 @@ img {
   width: 100%;
   margin-top: 0.125rem;
 }
+
+iframe {
+  width: 100%;
+  height: 30%;
+}
+
+footer {
+  background-color: aliceblue;
+  text-align: center;
+}
