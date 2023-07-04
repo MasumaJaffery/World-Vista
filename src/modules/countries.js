@@ -21,7 +21,7 @@ const getcountry = async() => {
      <div class="card-body">
      <h5>${data.name.common}</h5>
      <div class ="comment">
-     <button type = "button" class = "btn btn-primary">Comment</button>
+     <button type = "button" class = "btn btn-comment btn-primary">Comment</button>
      </div>
      </div>
     </div>`;
