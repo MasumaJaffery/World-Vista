@@ -25,6 +25,10 @@ h5 {
   padding: 1rem;
 }
 
+img {
+  border-bottom: 1px solid #312f2f;
+}
+
 .btn {
   width: 100%;
 }
