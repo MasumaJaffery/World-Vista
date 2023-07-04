@@ -4,8 +4,37 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: #2389ff;
+}
+
 .navbar-nav {
   display: flex;
   flex-direction: row;
   gap: 2.5rem;
+}
+
+.countries {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  padding: 2rem;
+}
+
+.country {
+  margin: 0.6rem;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.125);
+}
+
+h5 {
+  text-align: center;
+  padding: 1rem;
+}
+
+img {
+  border-bottom: 1px solid #312f2f;
+}
+
+.btn {
+  width: 100%;
+  margin-top: 0.125rem;
 }
