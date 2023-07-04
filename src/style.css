@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: #2389ff;
+}
+
 .navbar-nav {
   display: flex;
   flex-direction: row;
@@ -18,6 +22,7 @@
 
 .country {
   margin: 0.6rem;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.125);
 }
 
 h5 {
