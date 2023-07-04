@@ -19,7 +19,10 @@ const getcountry = async() => {
     `<div class="card country" style="width: 18rem;">
      <img src=${data.flags.svg} class="card-img-top" alt="..."  style="object-fit: cover; width: 100%; height: 12rem;>
      <div class="card-body">
+     <div class = "card-flex">
      <h5>${data.name.common}</h5>
+     <i class="fa-regular fa-heart"></i>
+     </div>
      <div class ="comment">
      <button type = "button" class = "btn btn-comment btn-primary">Comment</button>
      </div>

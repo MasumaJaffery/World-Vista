@@ -48,3 +48,14 @@ footer {
   background-color: aliceblue;
   text-align: center;
 }
+
+.card-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fa-heart {
+  font-size: 1.1rem;
+  margin-right: 0.3rem;
+}
