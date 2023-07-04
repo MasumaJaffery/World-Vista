@@ -23,6 +23,9 @@ const getcountry = async() => {
      <div class ="comment">
      <button type = "button" class = "btn btn-comment btn-primary">Comment</button>
      </div>
+     <div class ="reservation">
+     <button type = "button" class = "btn btn-comment btn-light">Reservations</button>
+     </div>
      </div>
     </div>`;
     countries.appendChild(country);
