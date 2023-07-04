@@ -8,7 +8,7 @@ const getcountry = async() => {
     } catch (error) {
       console.log('Error');
     }
-  }  
+  }
   getcountry();
 
   const postcountry = async (data) => {
@@ -24,9 +24,11 @@ const getcountry = async() => {
      <button type = "button" class = "btn btn-comment btn-primary">Comment</button>
      </div>
      <div class ="reservation">
-     <button type = "button" class = "btn btn-comment btn-success">Reservations</button>
+     <button type = "button" class = "btn btn-comment btn-success btn-reservation">Reservations</button>
      </div>
      </div>
     </div>`;
     countries.appendChild(country);
 }
+
+export default postcountry()
