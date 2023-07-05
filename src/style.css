@@ -132,6 +132,7 @@ footer {
 .comment-text {
   max-width: 350px;
 }
+/* style for mobile screen */
 
 @media screen and (max-width: 768px) {
   .popup-container {
