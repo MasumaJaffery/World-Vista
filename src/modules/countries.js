@@ -37,4 +37,12 @@ const getcountry = async() => {
      </div>
     </div>`;
     countries.appendChild(country);
+    //itemcount() is callback func here!
+    itemcount();
+}
+// Countries Card Counter!
+const itemcount = async () => {
+  const count = document.getElementById('count');
+  const countries = document.querySelectorAll('.country');
+  count.textContent = `(${countries.length}) `;
 }
