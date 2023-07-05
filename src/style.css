@@ -22,13 +22,13 @@ body {
 
 .countries {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   padding: 2rem;
 }
 
 .country {
   margin: 0.6rem;
-  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.125);
+  padding: 0.5rem;
 }
 
 h5 {
@@ -39,6 +39,7 @@ h5 {
 img {
   border-bottom: 1px solid #312f2f;
   background-image: url('../src/assets/icons/3D-Globe.svg');
+  border: 1px solid #312f2f;
 }
 
 .btn {
@@ -119,6 +120,34 @@ iframe {
 footer {
   background-color: aliceblue;
   text-align: center;
+}
+
+.card-flex {
+  display: flex;
+  height: 24%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fa-heart {
+  font-size: 1.1rem;
+  margin-right: 0.3rem;
+}
+
+.icon-btn {
+  background-color: #fff;
+  outline: none;
+  border: none;
+}
+
+.icon-counter {
+  display: flex;
+  flex-direction: column;
+}
+
+.like {
+  display: flex;
+  gap: 0.2rem;
 }
 
 /* HERE THE STYLE FOR POPUP */
