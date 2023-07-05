@@ -1,5 +1,3 @@
-// pop.js
-
 const openPopup = async (countryDetails) => {
   // Create the popup container
   const popContainer = document.createElement('div');
@@ -102,8 +100,8 @@ const openPopup = async (countryDetails) => {
 
     const commentText = document.createElement('div');
     commentText.classList.add('comment-text');
-    // const commentDate = new Date(comment.date).toDateString();
-    const commentInfo = ` ${comment.username}: ${comment.comment}`;
+
+    const commentInfo = `${comment.date} - ${comment.username}: ${comment.comment}`;
     commentText.textContent = commentInfo;
 
     commentEl.appendChild(commentText);
@@ -119,8 +117,7 @@ const openPopup = async (countryDetails) => {
     );
     const comments = await response.json();
     const commentCount = comments.length;
-    const commentText =
-      commentCount !== 0 ? `Comment(${commentCount})` : 'Comment(0)';
+    const commentText = commentCount !== 0 ? `Comment(${commentCount})` : 'Comment(0)';
     commentsCount.textContent = commentText;
 
     comments.forEach((comment) => {
@@ -143,6 +140,8 @@ const openPopup = async (countryDetails) => {
     nameInput.value = '';
     commentInput.value = '';
 
+    const currentDate = new Date().toISOString(); // Save current date in ISO format
+
     try {
       const response = await fetch(
         `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/FjhFMUdws0lCxR3eXCdS/comments`,
@@ -155,7 +154,7 @@ const openPopup = async (countryDetails) => {
             item_id: countryDetails.name.common,
             username: name,
             comment,
-            date: new Date().toISOString(), // Save current date in ISO format
+            date: currentDate,
           }),
         }
       );
@@ -163,13 +162,11 @@ const openPopup = async (countryDetails) => {
         const newComment = {
           username: name,
           comment,
-          date: new Date().toISOString(), // Use the saved date from the API response
+          date: currentDate,
         };
         displayComment(newComment);
         const commentCount = commentsList.childElementCount;
-        commentsCount.textContent = `${commentCount} Comment${
-          commentCount !== 1 ? 's' : ''
-        }`;
+        commentsCount.textContent = `${commentCount} Comment${commentCount !== 1 ? 's' : ''}`;
       } else {
         console.log('Error: Failed to save comment');
       }
