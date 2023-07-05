@@ -94,18 +94,44 @@ const openPopup = async (countryDetails) => {
     overlay.style.display = 'none';
   });
 
+  const commentsArray = [];
+  // Make displayfunction to display comment from api to screen
+
   const displayComment = (comment) => {
+    console.log('Comment:', comment);
+
     const commentEl = document.createElement('div');
     commentEl.classList.add('comment');
 
     const commentText = document.createElement('div');
     commentText.classList.add('comment-text');
 
-    const commentInfo = `${comment.date} - ${comment.username}: ${comment.comment}`;
+    let commentDate;
+    try {
+      // Try parsing the date string into a Date object
+      commentDate = new Date(comment.creation_date);
+    } catch (error) {
+      console.log('Error parsing date:', error);
+      commentDate = null;
+    }
+
+    let commentDateString;
+
+    if (!commentDate || isNaN(commentDate)) {
+      // Handle the case where the date is invalid or parsing failed
+      commentDateString = 'Invalid Date';
+    } else {
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      commentDateString = commentDate.toLocaleDateString(undefined, options);
+    }
+
+    const commentInfo = `${commentDateString}  ${comment.username}: ${comment.comment}`;
     commentText.textContent = commentInfo;
 
     commentEl.appendChild(commentText);
     commentsList.appendChild(commentEl);
+
+    commentsArray.push(commentDateString); // Save the formatted comment date to the array
   };
 
   // Fetch and display comments
@@ -117,7 +143,8 @@ const openPopup = async (countryDetails) => {
     );
     const comments = await response.json();
     const commentCount = comments.length;
-    const commentText = commentCount !== 0 ? `Comment(${commentCount})` : 'Comment(0)';
+    const commentText =
+      commentCount !== 0 ? `Comment(${commentCount})` : 'Comment(0)';
     commentsCount.textContent = commentText;
 
     comments.forEach((comment) => {
@@ -144,7 +171,9 @@ const openPopup = async (countryDetails) => {
 
     try {
       const response = await fetch(
-        `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/FjhFMUdws0lCxR3eXCdS/comments`,
+        `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/FjhFMUdws0lCxR3eXCdS/comments?item_id=${encodeURIComponent(
+          countryDetails.name.common
+        )}`,
         {
           method: 'POST',
           headers: {
@@ -166,7 +195,9 @@ const openPopup = async (countryDetails) => {
         };
         displayComment(newComment);
         const commentCount = commentsList.childElementCount;
-        commentsCount.textContent = `${commentCount} Comment${commentCount !== 1 ? 's' : ''}`;
+        commentsCount.textContent = ` Comment${
+          commentCount !== 1 ? 's' : ''
+        } (${commentCount})`;
       } else {
         console.log('Error: Failed to save comment');
       }
