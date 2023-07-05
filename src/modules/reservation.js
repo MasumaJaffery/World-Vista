@@ -37,7 +37,7 @@ const createReservationForm = () => {
         };
 
         try {
-            const response = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/abc234/reservations/', {
+            const response = await fetch('https://www.notion.so/Involvement-API-869e60b5ad104603aa6db59e08150270', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -14,12 +14,6 @@ body {
   gap: 2.5rem;
 }
 
-/* BODY STYLE */
-
-.card-body {
-  padding: 1px !important;
-}
-
 .countries {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -119,89 +113,4 @@ iframe {
 footer {
   background-color: aliceblue;
   text-align: center;
-}
-
-/* HERE THE STYLE FOR POPUP */
-
-.popup-container {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-  background-color: rgb(232, 224, 224);
-  padding: 12px;
-  position: fixed;
-  width: 50vw;
-  height: 45vw;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  border-radius: 5px;
-  overflow-y: scroll;
-}
-
-.over-lay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(3, 0, 0, 0.6);
-  z-index: 9999;
-}
-
-.countery-datail {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  text-align: start;
-}
-
-.country-capital {
-  padding-left: 12px;
-}
-
-.country-continent {
-  padding-left: 12px;
-}
-
-.country-flag {
-  width: 300px;
-  height: 200px;
-  text-align: center;
-  box-shadow: 2px 8px 4px rgba(0, 0, 0, 0.2);
-  background-color: aliceblue;
-}
-
-.popup-icon {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  z-index: 9999;
-}
-
-.country-name {
-  padding: 20px;
-}
-
-.comments-form {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  max-width: 90%;
-}
-
-.comments-list {
-  gap: 2px;
-}
-
-.comment-text {
-  max-width: 350px;
-}
-
-@media screen and (max-width: 768px) {
-  .popup-container {
-    width: 90vw;
-    height: 90vh;
-  }
 }
