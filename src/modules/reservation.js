@@ -1,54 +1,55 @@
+const createReservationForm = () => {
+    // Create the popup container
+    const popupContainer = document.createElement('div');
+    popupContainer.className = 'popup';
 
-let reservationBtn = document.getElementById('btn-reservation');
-let reservation = document.getElementsByClassName('reservation');
+    // Create the form container
+    const formContainer = document.createElement('div');
+    formContainer.className = 'form-container';
 
+    // Create the h1 element
+    const title = document.createElement('h1');
+    title.textContent = 'Add a Reservation';
 
-function createReservationForm() {
-    // Create the HTML code using template literals
-    let formHTML = `
-    <div>
-      <h1>Add a Reservation</h1>
-      <input type="text" id="name-input" name="name" placeholder="Your Name">
-      <input type="date" id="start-date-input" name="start-date" placeholder="Start Date">
-      <input type="date" id="end-date-input" name="end-date" placeholder="End Date">
-      <button id="reserve">Reserve</button>
-    </div>
-  `;
+    // Create the name input
+    const nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.placeholder = 'Your Name';
 
-    // Append the form HTML to the index of container element reservation
-    reservation.innerHTML += formHTML;
-}
+    // Create the start date input
+    const startDateInput = document.createElement('input');
+    startDateInput.type = 'date';
+    startDateInput.placeholder = 'Start Date';
 
+    // Create the end date input
+    const endDateInput = document.createElement('input');
+    endDateInput.type = 'date';
+    endDateInput.placeholder = 'End Date';
 
-reservationBtn.addEventListener('click', () => { createReservationForm() } );
+    // Create the reserve button
+    const reserveButton = document.createElement('button');
+    reserveButton.textContent = 'Reserve';
+    reserveButton.addEventListener('click', async () => {
+        // Reservation submission code...
+    });
 
-//  when click the reserve button, get the values of the input fields
-let reserveBtn = document.getElementById('reserve');
-reserveBtn.addEventListener('click', () => {
-    let name = document.getElementById('name-input').value;
-    let startDate = document.getElementById('start-date-input').value;
-    let endDate = document.getElementById('end-date-input').value;
+    // Append the elements to the form container
+    formContainer.appendChild(title);
+    formContainer.appendChild(nameInput);
+    formContainer.appendChild(startDateInput);
+    formContainer.appendChild(endDateInput);
+    formContainer.appendChild(reserveButton);
 
-    //  create a reservation object
-    let reservation = {
-        name: name,
-        startDate: startDate,
-        endDate: endDate
+    // Append the form container to the popup container
+    popupContainer.appendChild(formContainer);
+
+    // Append the popup container to the body
+    document.body.appendChild(popupContainer);
+};
+
+// Call the createReservationForm function when the "Reservations" button is clicked
+document.addEventListener('click', function (event) {
+    if (event.target.classList.contains('btn-reservation')) {
+        createReservationForm();
     }
-
-    //  post the reservation object
-    fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/6Z4Z3X2Z2Z2Z2Z2Z2Z2/reservations', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(reservation),
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
 });

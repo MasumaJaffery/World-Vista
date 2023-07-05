@@ -31,4 +31,4 @@ const getcountry = async() => {
     countries.appendChild(country);
 }
 
-export default postcountry()
+export  {getcountry, postcountry};
