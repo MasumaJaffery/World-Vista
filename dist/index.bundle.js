@@ -16,7 +16,9 @@
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/noSourceMaps.js */ \"./node_modules/css-loader/dist/runtime/noSourceMaps.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);\n// Imports\n\n\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, `* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n}\r\n\r\nbody {\r\n  background-color: #2389ff;\r\n}\r\n\r\n.navbar-nav {\r\n  display: flex;\r\n  flex-direction: row;\r\n  gap: 2.5rem;\r\n}\r\n\r\n.countries {\r\n  display: grid;\r\n  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));\r\n  padding: 2rem;\r\n}\r\n\r\n.country {\r\n  margin: 0.6rem;\r\n  padding: 0.5rem;\r\n}\r\n\r\nh5 {\r\n  text-align: center;\r\n  padding: 1rem;\r\n}\r\n\r\nimg {\r\n  border: 1px solid #312f2f;\r\n}\r\n\r\n.btn {\r\n  width: 100%;\r\n  margin-top: 0.125rem;\r\n}\r\n\r\niframe {\r\n  width: 100%;\r\n  height: 30%;\r\n}\r\n\r\nfooter {\r\n  background-color: aliceblue;\r\n  text-align: center;\r\n}\r\n\r\n.card-flex {\r\n  display: flex;\r\n  height: 24%;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n}\r\n\r\n.fa-heart {\r\n  font-size: 1.1rem;\r\n  margin-right: 0.3rem;\r\n}\r\n\r\n.icon-btn {\r\n  background-color: #fff;\r\n  outline: none;\r\n  border: none;\r\n}\r\n\r\n.icon-counter {\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n\r\n.like {\r\n  display: flex;\r\n  gap: 0.2rem;\r\n}\r\n`, \"\"]);\n// Exports\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack://module-capstone--2/./src/style.css?./node_modules/css-loader/dist/cjs.js");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/noSourceMaps.js */ \"./node_modules/css-loader/dist/runtime/noSourceMaps.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/getUrl.js */ \"./node_modules/css-loader/dist/runtime/getUrl.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2__);\n// Imports\n\n\n\nvar ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! ../src/assets/icons/3D-Globe.svg */ \"./src/assets/icons/3D-Globe.svg\"), __webpack_require__.b);\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));\nvar ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_0___);\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, `* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\nbody {\n  background-color: #2389ff;\n}\n\n.navbar-nav {\n  display: flex;\n  flex-direction: row;\n  gap: 2.5rem;\n}\n\n.countries {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));\n  padding: 2rem;\n}\n\n.country {\n  margin: 0.6rem;\n  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.125);\n}\n\nh5 {\n  text-align: center;\n  padding: 1rem;\n}\n\nimg {\n  border-bottom: 1px solid #312f2f;\n  background-image: url(${___CSS_LOADER_URL_REPLACEMENT_0___});\n}\n\n.btn {\n  width: 100%;\n  margin-top: 0.125rem;\n}\n\n.popup {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  z-index: 9999;\n}\n\n.form-container {\n  background-color: #fff;\n  padding: 20px;\n  border-radius: 5px;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);\n  max-width: 400px;\n}\n\nh1 {\n  text-align: center;\n}\n\ninput[type=\"text\"],\ninput[type=\"date\"] {\n  width: 100%;\n  padding: 10px;\n  margin-bottom: 10px;\n  border: 1px solid #ccc;\n  border-radius: 3px;\n}\n\nbutton {\n  width: 100%;\n  padding: 10px;\n  background-color: #4caf50;\n  color: #fff;\n  border: none;\n  border-radius: 3px;\n  cursor: pointer;\n}\n\nbutton:hover {\n  background-color: #45a049;\n}\n\n.close-button {\n  background-color: transparent;\n  border: none;\n  font-size: 20px;\n  cursor: pointer;\n  float: right;\n  color: black;\n  position: relative;\n  bottom: 81px;\n  left: 180px;\n}\n\n.close-button:hover {\n  background-color: initial;\n  color: initial;\n}\n\niframe {\n  width: 100%;\n  height: 30%;\n}\n\nfooter {\n  background-color: aliceblue;\n  text-align: center;\n}\n`, \"\"]);\n// Exports\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack://module-capstone--2/./src/style.css?./node_modules/css-loader/dist/cjs.js");
 
 /***/ }),
 
@@ -28,6 +30,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 "use strict";
 eval("\n\n/*\n  MIT License http://www.opensource.org/licenses/mit-license.php\n  Author Tobias Koppers @sokra\n*/\nmodule.exports = function (cssWithMappingToString) {\n  var list = [];\n\n  // return the list of modules as css string\n  list.toString = function toString() {\n    return this.map(function (item) {\n      var content = \"\";\n      var needLayer = typeof item[5] !== \"undefined\";\n      if (item[4]) {\n        content += \"@supports (\".concat(item[4], \") {\");\n      }\n      if (item[2]) {\n        content += \"@media \".concat(item[2], \" {\");\n      }\n      if (needLayer) {\n        content += \"@layer\".concat(item[5].length > 0 ? \" \".concat(item[5]) : \"\", \" {\");\n      }\n      content += cssWithMappingToString(item);\n      if (needLayer) {\n        content += \"}\";\n      }\n      if (item[2]) {\n        content += \"}\";\n      }\n      if (item[4]) {\n        content += \"}\";\n      }\n      return content;\n    }).join(\"\");\n  };\n\n  // import a list of modules into the list\n  list.i = function i(modules, media, dedupe, supports, layer) {\n    if (typeof modules === \"string\") {\n      modules = [[null, modules, undefined]];\n    }\n    var alreadyImportedModules = {};\n    if (dedupe) {\n      for (var k = 0; k < this.length; k++) {\n        var id = this[k][0];\n        if (id != null) {\n          alreadyImportedModules[id] = true;\n        }\n      }\n    }\n    for (var _k = 0; _k < modules.length; _k++) {\n      var item = [].concat(modules[_k]);\n      if (dedupe && alreadyImportedModules[item[0]]) {\n        continue;\n      }\n      if (typeof layer !== \"undefined\") {\n        if (typeof item[5] === \"undefined\") {\n          item[5] = layer;\n        } else {\n          item[1] = \"@layer\".concat(item[5].length > 0 ? \" \".concat(item[5]) : \"\", \" {\").concat(item[1], \"}\");\n          item[5] = layer;\n        }\n      }\n      if (media) {\n        if (!item[2]) {\n          item[2] = media;\n        } else {\n          item[1] = \"@media \".concat(item[2], \" {\").concat(item[1], \"}\");\n          item[2] = media;\n        }\n      }\n      if (supports) {\n        if (!item[4]) {\n          item[4] = \"\".concat(supports);\n        } else {\n          item[1] = \"@supports (\".concat(item[4], \") {\").concat(item[1], \"}\");\n          item[4] = supports;\n        }\n      }\n      list.push(item);\n    }\n  };\n  return list;\n};\n\n//# sourceURL=webpack://module-capstone--2/./node_modules/css-loader/dist/runtime/api.js?");
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/getUrl.js":
+/*!********************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/getUrl.js ***!
+  \********************************************************/
+/***/ ((module) => {
+
+"use strict";
+eval("\n\nmodule.exports = function (url, options) {\n  if (!options) {\n    options = {};\n  }\n  if (!url) {\n    return url;\n  }\n  url = String(url.__esModule ? url.default : url);\n\n  // If url is already wrapped in quotes, remove them\n  if (/^['\"].*['\"]$/.test(url)) {\n    url = url.slice(1, -1);\n  }\n  if (options.hash) {\n    url += options.hash;\n  }\n\n  // Should url be wrapped?\n  // See https://drafts.csswg.org/css-values-3/#urls\n  if (/[\"'() \\t\\n]|(%20)/.test(url) || options.needQuotes) {\n    return \"\\\"\".concat(url.replace(/\"/g, '\\\\\"').replace(/\\n/g, \"\\\\n\"), \"\\\"\");\n  }\n  return url;\n};\n\n//# sourceURL=webpack://module-capstone--2/./node_modules/css-loader/dist/runtime/getUrl.js?");
 
 /***/ }),
 
@@ -126,7 +139,11 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _modules_countries_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/countries.js */ \"./src/modules/countries.js\");\n/* harmony import */ var _modules_countries_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_modules_countries_js__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _modules_likeitems_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/likeitems.js */ \"./src/modules/likeitems.js\");\n/* harmony import */ var _modules_home_counter_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/home-counter.js */ \"./src/modules/home-counter.js\");\n\r\n\r\n\r\n\n\n//# sourceURL=webpack://module-capstone--2/./src/index.js?");
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _modules_countries_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/countries.js */ \"./src/modules/countries.js\");\n/* harmony import */ var _modules_reservation_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/reservation.js */ \"./src/modules/reservation.js\");\n/* harmony import */ var _modules_reservation_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_modules_reservation_js__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\n\n//# sourceURL=webpack://module-capstone--2/./src/index.js?");
+
 
 /***/ }),
 
@@ -134,7 +151,19 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sty
 /*!**********************************!*\
   !*** ./src/modules/countries.js ***!
   \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   getcountry: () => (/* binding */ getcountry),\n/* harmony export */   postcountry: () => (/* binding */ postcountry)\n/* harmony export */ });\nconst getcountry = async() => {\n    try {\n      const response = await fetch('https://restcountries.com/v3.1/all');\n      const data = await response.json();\n      data.forEach(item => {\n        postcountry(item);\n      });\n    } catch (error) {\n      console.log('Error');\n    }\n  }\n  getcountry();\n\n  const postcountry = async (data) => {\n    const countries = document.querySelector('.countries');\n    const country = document.createElement('div');\n    country.className = 'country';\n    country.innerHTML =\n    `<div class=\"card country\" style=\"width: 18rem;\">\n     <img src=${data.flags.svg} class=\"card-img-top\" alt=\"...\"  style=\"object-fit: cover; width: 100%; height: 12rem;>\n     <div class=\"card-body\">\n     <h5>${data.name.common}</h5>\n     <div class =\"comment\">\n     <button type = \"button\" class = \"btn btn-comment btn-primary\">Comment</button>\n     </div>\n     <div class =\"reservation\">\n     <button type = \"button\" class = \"btn btn-comment btn-success btn-reservation\">Reservations</button>\n     </div>\n     </div>\n    </div>`;\n    countries.appendChild(country);\n}\n\n\n\n//# sourceURL=webpack://module-capstone--2/./src/modules/countries.js?");
+
+/***/ }),
+
+/***/ "./src/modules/reservation.js":
+/*!************************************!*\
+  !*** ./src/modules/reservation.js ***!
+  \************************************/
 /***/ (() => {
+
 
 eval("const getcountry = async() => {\r\n    try {\r\n      const response = await fetch('https://restcountries.com/v3.1/all');\r\n      const data = await response.json();\r\n      data.forEach(item => {\r\n        postcountry(item);\r\n      });\r\n    } catch (error) {\r\n      console.log('Error');\r\n    }\r\n  }  \r\n  getcountry();\r\n\r\n  const postcountry = async (data) => {\r\n    const countries = document.querySelector('.countries');\r\n    const country = document.createElement('div');\r\n    country.className = 'country';\r\n    country.innerHTML =\r\n    `<div class=\"card country\" style=\"width: 20rem; height: 23.5rem;\">\r\n     <img src=${data.flags.svg} class=\"card-img-top\" alt=\"...\"  style=\"object-fit: cover; width: 100%; height: 12rem;>\r\n     <div class=\"card-body\">\r\n     <div class = \"card-flex\">\r\n     <h5>${data.name.common}</h5>\r\n     <div class = \"icon-counter\">\r\n     <button type = \"button\" class = \"icon-btn\"><i class=\"fa-regular fa-heart\"></i>\r\n     </button>\r\n     <div class = \"like\">\r\n     <span class = \"like-counter\">0</span><span> like's</span></div>\r\n     </div>\r\n     </div>\r\n     <div class =\"comment\">\r\n     <button type = \"button\" class = \"btn btn-comment btn-primary\">Comment</button>\r\n     </div>\r\n     <div class =\"reservation\">\r\n     <button type = \"button\" class = \"btn btn-reservation btn-success\">Reservations</button>\r\n     </div>\r\n     </div>\r\n    </div>`;\r\n    countries.appendChild(country);\r\n}\r\n\n\n//# sourceURL=webpack://module-capstone--2/./src/modules/countries.js?");
 
@@ -159,6 +188,20 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   loadLikes: () => (/* binding */ loadLikes),\n/* harmony export */   sendLike: () => (/* binding */ sendLike)\n/* harmony export */ });\n/* harmony import */ var _countries_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./countries.js */ \"./src/modules/countries.js\");\n/* harmony import */ var _countries_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_countries_js__WEBPACK_IMPORTED_MODULE_0__);\n\r\nconst id = 'abcdefg';\r\nconst baseAPI = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps';\r\nconst likeURL = `${baseAPI}/${id}/likes`;\r\nconst iconbtn = document.querySelector('.icon-btn');\r\nconst likecounter = document.querySelector('.like-counter');\r\n\r\nconst getLikes = async () => {\r\n  try {\r\n    const result = await fetch(likeURL);\r\n    const data = await result.json();\r\n    return data;\r\n  } catch (error) {\r\n    return {\r\n      Response: 'False',\r\n      Error: error.message || 'Unexpected error',\r\n    };\r\n  }\r\n};\r\n\r\nconst updateLikeCounter = async () => {\r\n  const likesData = await getLikes();\r\n  likecounter.innerHTML = likesData.length;\r\n};\r\n\r\n// Event listener for adding likes\r\niconbtn.addEventListener('click', async () => {\r\n  try {\r\n    const response = await fetch(likeURL, {\r\n      method: 'POST',\r\n      headers: { 'Content-Type': 'application/json' },\r\n      body: JSON.stringify({\r\n        item_id: id,\r\n      }),\r\n    });\r\n\r\n    if (!response.ok) {\r\n      const errorData = await response.json();\r\n      throw new Error(errorData.message);\r\n    }\r\n\r\n    await updateLikeCounter();\r\n    console.log('Like added');\r\n  } catch (error) {\r\n    console.error(error);\r\n  }\r\n});\r\n\r\n// Call updateLikeCounter on initial page load\r\nupdateLikeCounter();\r\n\r\nconst loadLikes = async () => {\r\n  // Load likes data\r\n  const likesData = await getLikes();\r\n  return likesData;\r\n};\r\n\r\nconst sendLike = async (itemId) => {\r\n  try {\r\n    const response = await fetch(likeURL, {\r\n      method: 'POST',\r\n      headers: { 'Content-Type': 'application/json' },\r\n      body: JSON.stringify({\r\n        item_id: itemId,\r\n      }),\r\n    });\r\n\r\n    if (!response.ok) {\r\n      const errorData = await response.json();\r\n      throw new Error(errorData.message);\r\n    }\r\n\r\n    const data = await response.json();\r\n    return data;\r\n  } catch (error) {\r\n    console.error(error);\r\n    return {\r\n      Response: 'False',\r\n      Error: error.message || 'Unexpected error',\r\n    };\r\n  }\r\n};\r\n\r\n\n\n//# sourceURL=webpack://module-capstone--2/./src/modules/likeitems.js?");
+=======
+eval("const createReservationForm = () => {\n    const popupContainer = document.createElement('div');\n    popupContainer.className = 'popup';\n\n    const formContainer = document.createElement('div');\n    formContainer.className = 'form-container';\n\n    const title = document.createElement('h1');\n    title.textContent = 'Add a Reservation';\n\n    const closeButton = document.createElement('button');\n    closeButton.className = 'close-button';\n    closeButton.innerHTML = '&times;';\n    closeButton.addEventListener('click', () => {\n        popupContainer.remove();\n    });\n\n    const nameInput = document.createElement('input');\n    nameInput.type = 'text';\n    nameInput.placeholder = 'Your Name';\n\n    const startDateInput = document.createElement('input');\n    startDateInput.type = 'date';\n    startDateInput.placeholder = 'Start Date';\n\n    const endDateInput = document.createElement('input');\n    endDateInput.type = 'date';\n    endDateInput.placeholder = 'End Date';\n\n    const reserveButton = document.createElement('button');\n    reserveButton.textContent = 'Reserve';\n    reserveButton.addEventListener('click', async () => {\n        const reservationData = {\n            name: nameInput.value,\n            startDate: startDateInput.value,\n            endDate: endDateInput.value\n        };\n\n        try {\n            const response = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/abc234/reservations/', {\n                method: 'POST',\n                headers: {\n                    'Content-Type': 'application/json'\n                },\n                body: JSON.stringify(reservationData)\n            });\n\n            if (response.ok) {\n                const reservationInfo = document.createElement('div');\n                reservationInfo.innerHTML = `\n          <h3>Reservation Details:</h3>\n          <p>Name: ${reservationData.name}</p>\n          <p>Start Date: ${reservationData.startDate}</p>\n          <p>End Date: ${reservationData.endDate}</p>\n        `;\n                formContainer.appendChild(reservationInfo);\n            } else {\n                const errorLabel = document.createElement('label');\n                errorLabel.textContent = 'Error recording reservation';\n                formContainer.appendChild(errorLabel);\n            }\n        } catch (error) {\n            const errorLabel = document.createElement('label');\n            errorLabel.textContent = `Error: ${error}`;\n            formContainer.appendChild(errorLabel);\n        }\n    });\n\n    // Append the elements to the form container\n    formContainer.appendChild(title);\n    formContainer.appendChild(closeButton);\n    formContainer.appendChild(nameInput);\n    formContainer.appendChild(startDateInput);\n    formContainer.appendChild(endDateInput);\n    formContainer.appendChild(reserveButton);\n\n    popupContainer.appendChild(formContainer);\n\n    document.body.appendChild(popupContainer);\n};\n\ndocument.addEventListener('click', function (event) {\n    if (event.target.classList.contains('btn-reservation')) {\n        createReservationForm();\n    }\n});\n\n//# sourceURL=webpack://module-capstone--2/./src/modules/reservation.js?");
+
+/***/ }),
+
+/***/ "./src/assets/icons/3D-Globe.svg":
+/*!***************************************!*\
+  !*** ./src/assets/icons/3D-Globe.svg ***!
+  \***************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("module.exports = __webpack_require__.p + \"a82808e3ee102059b09e.svg\";\n\n//# sourceURL=webpack://module-capstone--2/./src/assets/icons/3D-Globe.svg?");
+
 
 /***/ })
 
@@ -188,6 +231,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -213,6 +259,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -227,6 +285,55 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src;
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) {
+/******/ 					var i = scripts.length - 1;
+/******/ 					while (i > -1 && !scriptUrl) scriptUrl = scripts[i--].src;
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		__webpack_require__.b = document.baseURI || self.location.href;
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"index": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		// no on chunks loaded
+/******/ 		
+/******/ 		// no jsonp function
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/nonce */
