@@ -1,17 +1,22 @@
 import './countries.js';
-const appID = 'abcdefg';
+const appID = '0I1gsmjKECA6HGAxhWHM';
 const baseAPI = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps';
 const likeURL = `${baseAPI}/${appID}/likes`;
 const getlike = async() => {
   const response = await fetch(likeURL);
-  await response.json();
+  const data = await response.json();
+  console.log(data);
   const iconbtn = document.querySelectorAll('.icon-btn');
-  const  likecounter = document.querySelectorAll('.like-counter');
-  iconbtn.forEach((btn) => {
+  iconbtn.forEach((btn, index) => {
     btn.addEventListener('click', async () => {
-    likecounter.innerHTML += 1;
-    console.log('clicked');
-    })
+      const likecounter = document.querySelectorAll('.like-counter');
+if (likecounter[index]) {
+  likecounter[index].innerHTML = parseInt(likecounter[index].innerHTML) + 1;
+  console.log('clicked');
+}
+//Send like to Api!
   });
+});
+
 }
 getlike();
