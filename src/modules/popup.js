@@ -13,7 +13,7 @@ const openPopup = async (countryDetails) => {
   countryFlagEl.classList.add('country-flag');
   countryFlagEl.src = countryDetails.flags.png;
 
-  const countryNameEl = document.createElement('h2');
+  const countryNameEl = document.createElement('h1');
   countryNameEl.classList.add('country-name');
   countryNameEl.textContent = countryDetails.name.common;
 
