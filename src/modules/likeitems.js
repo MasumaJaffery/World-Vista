@@ -1,3 +1,4 @@
+import './countries.js';
 const id = 'abcdefg';
 const baseAPI = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps';
 const likeURL = `${baseAPI}/${id}/likes`;
