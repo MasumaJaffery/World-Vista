@@ -1,4 +1,3 @@
-// Create a reservation form
 const createReservationForm = () => {
     const popupContainer = document.createElement('div');
     popupContainer.className = 'popup';
@@ -31,6 +30,40 @@ const createReservationForm = () => {
     const reserveButton = document.createElement('button');
     reserveButton.textContent = 'Reserve';
     reserveButton.addEventListener('click', async () => {
+        const reservationData = {
+            name: nameInput.value,
+            startDate: startDateInput.value,
+            endDate: endDateInput.value
+        };
+
+        try {
+            const response = await fetch('https://www.notion.so/Involvement-API-869e60b5ad104603aa6db59e08150270', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(reservationData)
+            });
+
+            if (response.ok) {
+                const reservationInfo = document.createElement('div');
+                reservationInfo.innerHTML = `
+          <h3>Reservation Details:</h3>
+          <p>Name: ${reservationData.name}</p>
+          <p>Start Date: ${reservationData.startDate}</p>
+          <p>End Date: ${reservationData.endDate}</p>
+        `;
+                formContainer.appendChild(reservationInfo);
+            } else {
+                const errorLabel = document.createElement('label');
+                errorLabel.textContent = 'Error recording reservation';
+                formContainer.appendChild(errorLabel);
+            }
+        } catch (error) {
+            const errorLabel = document.createElement('label');
+            errorLabel.textContent = `Error: ${error}`;
+            formContainer.appendChild(errorLabel);
+        }
     });
 
     // Append the elements to the form container
@@ -46,7 +79,6 @@ const createReservationForm = () => {
     document.body.appendChild(popupContainer);
 };
 
-// Call the createReservationForm function when the "Reservations" button is clicked
 document.addEventListener('click', function (event) {
     if (event.target.classList.contains('btn-reservation')) {
         createReservationForm();

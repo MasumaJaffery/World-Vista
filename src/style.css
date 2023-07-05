@@ -101,7 +101,8 @@ button:hover {
 }
 
 .close-button:hover {
-  color: red;
+  background-color: initial;
+  color: initial;
 }
 
 iframe {
