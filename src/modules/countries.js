@@ -16,18 +16,23 @@ const getcountry = async() => {
     const country = document.createElement('div');
     country.className = 'country';
     country.innerHTML =
-    `<div class="card country" style="width: 18rem;">
+    `<div class="card country" style="width: 20rem; height: 23.5rem;">
      <img src=${data.flags.svg} class="card-img-top" alt="..."  style="object-fit: cover; width: 100%; height: 12rem;>
      <div class="card-body">
      <div class = "card-flex">
      <h5>${data.name.common}</h5>
-     <i class="fa-regular fa-heart"></i>
+     <div class = "icon-counter">
+     <button type = "button" class = "icon-btn"><i class="fa-regular fa-heart"></i>
+     </button>
+     <div class = "like">
+     <span class = "like-counter">0</span><span> like's</span></div>
+     </div>
      </div>
      <div class ="comment">
      <button type = "button" class = "btn btn-comment btn-primary">Comment</button>
      </div>
      <div class ="reservation">
-     <button type = "button" class = "btn btn-comment btn-success">Reservations</button>
+     <button type = "button" class = "btn btn-reservation btn-success">Reservations</button>
      </div>
      </div>
     </div>`;
