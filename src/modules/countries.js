@@ -24,7 +24,7 @@ const postcountry = async (data) => {
           <button type="button" class="btn btn-commentt btn-primary" data-country="${data.name.common}">Comment</button>
         </div>
         <div class="reservation">
-          <button type="button" class="btn btn-comment btn-success">Reservations</button>
+          <button type="button" class="btn btn-comment btn-success btn-reservation">Reservations</button>
         </div>
       </div>
     </div>`;
