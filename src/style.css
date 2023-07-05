@@ -38,7 +38,7 @@ h5 {
 
 img {
   border-bottom: 1px solid #312f2f;
-  background-image: url("../src/assets/icons/3D-Globe.svg");
+  background-image: url('../src/assets/icons/3D-Globe.svg');
 }
 
 .btn {
@@ -71,8 +71,8 @@ h1 {
   text-align: center;
 }
 
-input[type="text"],
-input[type="date"] {
+input[type='text'],
+input[type='date'] {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -176,7 +176,7 @@ footer {
 .popup-icon {
   position: fixed;
   top: 10px;
-  right: 10px;
+  right: 20px;
   z-index: 9999;
 }
 
