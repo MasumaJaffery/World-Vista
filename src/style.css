@@ -88,6 +88,22 @@ button:hover {
   background-color: #45a049;
 }
 
+.close-button {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  float: right;
+  color: black;
+  position: relative;
+  bottom: 81px;
+  left: 180px;
+}
+
+.close-button:hover {
+  color: red;
+}
+
 iframe {
   width: 100%;
   height: 30%;

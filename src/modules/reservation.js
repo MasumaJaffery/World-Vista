@@ -1,3 +1,4 @@
+// Create a reservation form
 const createReservationForm = () => {
     const popupContainer = document.createElement('div');
     popupContainer.className = 'popup';
@@ -7,6 +8,13 @@ const createReservationForm = () => {
 
     const title = document.createElement('h1');
     title.textContent = 'Add a Reservation';
+
+    const closeButton = document.createElement('button');
+    closeButton.className = 'close-button';
+    closeButton.innerHTML = '&times;';
+    closeButton.addEventListener('click', () => {
+        popupContainer.remove();
+    });
 
     const nameInput = document.createElement('input');
     nameInput.type = 'text';
@@ -27,6 +35,7 @@ const createReservationForm = () => {
 
     // Append the elements to the form container
     formContainer.appendChild(title);
+    formContainer.appendChild(closeButton);
     formContainer.appendChild(nameInput);
     formContainer.appendChild(startDateInput);
     formContainer.appendChild(endDateInput);
