@@ -80,4 +80,3 @@ export const sendLike = async (itemId) => {
     };
   }
 };
-
