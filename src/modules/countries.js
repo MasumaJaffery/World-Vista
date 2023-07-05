@@ -2,6 +2,7 @@ const getcountry = async () => {
   try {
     const response = await fetch('https://restcountries.com/v3.1/all');
     const data = await response.json();
+    console.log(data)
     data.forEach((item) => {
       postcountry(item);
     });
@@ -24,7 +25,7 @@ const postcountry = async (data) => {
           <button type="button" class="btn btn-commentt btn-primary" data-country="${data.name.common}">Comment</button>
         </div>
         <div class="reservation">
-          <button type="button" class="btn btn-comment btn-success btn-reservation">Reservations</button>
+          <button type="button" class="btn btn-comment btn-success btn-reservation" data-country="${data.name.common}">Reservations</button>
         </div>
       </div>
     </div>`;
