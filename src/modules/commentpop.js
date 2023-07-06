@@ -155,11 +155,10 @@ const openPopup = async (countryDetails) => {
     commentsList.appendChild(commentEl);
 
     const commentCount = commentsList.querySelectorAll('.comment').length || 0;
-    commentsCount.textContent = `Comment (${commentCount})`;
-
     if (commentCount === 0) {
       commentsCount.textContent = 'Comment (0)';
     }
+    commentsCount.textContent = `Comment (${commentCount})`;
   };
 
   // Fetch and display comments
