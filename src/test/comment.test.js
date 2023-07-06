@@ -10,7 +10,7 @@ describe('Comment Counter', () => {
     const commentCount = getCommentCount(commentsList);
     expect(commentCount).toBe('Comment (0)');
   });
-  
+
   test('returns "Comment (1)" when there is one comment', () => {
     const commentsList = {
       childElementCount: 1,
@@ -43,5 +43,4 @@ describe('Comment Counter', () => {
     const commentCount = getCommentCount(commentsList);
     expect(commentCount).toBe('Comment (1)');
   });
-
 });
