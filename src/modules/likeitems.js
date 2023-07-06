@@ -58,11 +58,14 @@ async function updateLikeCounter() {
   try {
     const response = await fetch(involvementApiEndpoint);
     const data = await response.json();
-    const likecounter = document.querySelector('.like-counter');
-    if (likecounter) {
-      likecounter.innerHTML = data.length;
+    console.log(data)
+    const likecounter = document.querySelectorAll('.like-counter');
+    if (likecounter.length > 0) {
+      likecounter.forEach(like => {
+        like.innerHTML = data.length;
+      });
     } else {
-      console.error('Error: Unable to find the like counter element.');
+      console.error('Error: Unable to find the like counter elements.');
     }
   } catch (error) {
     console.error('Error updating like counter:', error);
@@ -71,7 +74,8 @@ async function updateLikeCounter() {
 
 document.addEventListener('click', async (event) => {
   if (event.target.classList.contains('icon-btn')) {
-    const countryName = event.target.getAttribute('data-country');
+    const iconBtn = event.target;
+    const countryName = iconBtn.getAttribute('data-country');
     try {
       const response = await fetch(`${involvementApiEndpoint}/name/${countryName}`, {
         method: 'POST',
@@ -80,12 +84,10 @@ document.addEventListener('click', async (event) => {
           countryName,
         }),
       });
-
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message);
       }
-
       await updateLikeCounter();
       console.log('Like added');
     } catch (error) {
