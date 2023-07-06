@@ -69,16 +69,15 @@ async function updateLikeCounter() {
   }
 }
 
-
 document.addEventListener('click', async (event) => {
   if (event.target.classList.contains('icon-btn')) {
-    const id = 'item_id';
+    const countryName = event.target.getAttribute('data-country');
     try {
-      const response = await fetch(involvementApiEndpoint, {
+      const response = await fetch(`${involvementApiEndpoint}/name/${countryName}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          item_id: id,
+          countryName,
         }),
       });
 
@@ -94,7 +93,6 @@ document.addEventListener('click', async (event) => {
     }
   }
 });
-
 
 // Call updateLikeCounter on initial page load
 updateLikeCounter();

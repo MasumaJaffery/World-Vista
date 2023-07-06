@@ -22,7 +22,7 @@ getcountry();
      <div class = "card-flex">
      <h5>${data.name.common}</h5>
      <div class = "icon-counter">
-     <button type = "button" class = "icon-btn"><i class="fa-regular fa-heart"></i>
+     <button type = "button" class = "icon-btn" data-country = "${data.name.common}"><i class="fa-regular fa-heart"></i>
      </button>
      <div class = "like">
      <span class="like-counter"></span><span> like's</span></div>
