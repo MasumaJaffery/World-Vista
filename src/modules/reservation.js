@@ -1,3 +1,4 @@
+ reservation-api
 appId = "FjhFMUdws0lCxR3eXCdS"
 const createReservationForm = async (itemId) => {
     
@@ -20,18 +21,20 @@ const createReservationForm = async (itemId) => {
         popupContainer.remove();
     });
 
-    const nameInput = document.createElement('input');
-    nameInput.type = 'text';
-    nameInput.placeholder = 'Your Name';
 
-    const startDateInput = document.createElement('input');
-    startDateInput.type = 'date';
-    startDateInput.placeholder = 'Start Date';
+  const nameInput = document.createElement('input');
+  nameInput.type = 'text';
+  nameInput.placeholder = 'Your Name';
 
-    const endDateInput = document.createElement('input');
-    endDateInput.type = 'date';
-    endDateInput.placeholder = 'End Date';
+  const startDateInput = document.createElement('input');
+  startDateInput.type = 'date';
+  startDateInput.placeholder = 'Start Date';
 
+  const endDateInput = document.createElement('input');
+  endDateInput.type = 'date';
+  endDateInput.placeholder = 'End Date';
+
+reservation-api
     const reserveButton = document.createElement('button');
     reserveButton.textContent = 'Reserve';
     reserveButton.addEventListener('click', async () => {
@@ -74,12 +77,14 @@ const createReservationForm = async (itemId) => {
     formContainer.appendChild(endDateInput);
     formContainer.appendChild(reserveButton);
 
-    popupContainer.appendChild(formContainer);
 
-    document.body.appendChild(popupContainer);
+  popupContainer.appendChild(formContainer);
+
+  document.body.appendChild(popupContainer);
 };
 
 document.addEventListener('click', function (event) {
+reservation-api
     console.log({ data: event.target.dataset.country})
     if (event.target.classList.contains('btn-reservation')) {
         createReservationForm(event.target.dataset.country);
@@ -105,3 +110,4 @@ const getReservation = async (itemId, formContainer) => {
 }
 return 0;
 }
+

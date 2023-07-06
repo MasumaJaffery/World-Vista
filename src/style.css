@@ -38,7 +38,6 @@ h5 {
 
 img {
   border-bottom: 1px solid #312f2f;
-  background-image: url("../src/assets/icons/3D-Globe.svg");
 }
 
 .btn {
@@ -46,6 +45,7 @@ img {
   margin-top: 0.125rem;
 }
 
+reservation-api
 .popup {
   position: fixed;
   top: 0;
@@ -187,9 +187,13 @@ footer {
 
 .comments-form {
   display: flex;
+  justify-self: center;
   flex-direction: column;
   gap: 3px;
-  max-width: 90%;
+  max-width: 100%;
+  align-self: center;
+  padding: 0;
+  margin: 0;
 }
 
 .comments-list {
@@ -198,7 +202,12 @@ footer {
 
 .comment-text {
   max-width: 350px;
+  word-wrap: break-word;
+  text-align: start;
+  list-style: none;
 }
+
+/* style for mobile screen */
 
 @media screen and (max-width: 768px) {
   .popup-container {
