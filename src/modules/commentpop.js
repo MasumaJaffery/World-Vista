@@ -118,7 +118,6 @@ const openPopup = async (countryDetails) => {
     overlay.style.display = 'none';
   });
 
-  const commentsArray = [];
   // Make displayfunction to display comment from api to screen
   const displayComment = (comment) => {
     const commentEl = document.createElement('div');
