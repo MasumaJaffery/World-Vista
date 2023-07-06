@@ -1,7 +1,7 @@
- reservation-api
-appId = "FjhFMUdws0lCxR3eXCdS"
+
+const appId = "FjhFMUdws0lCxR3eXCdS"
 const createReservationForm = async (itemId) => {
-    
+
     const popupContainer = document.createElement('div');
     popupContainer.className = 'popup';
 
@@ -34,7 +34,6 @@ const createReservationForm = async (itemId) => {
   endDateInput.type = 'date';
   endDateInput.placeholder = 'End Date';
 
-reservation-api
     const reserveButton = document.createElement('button');
     reserveButton.textContent = 'Reserve';
     reserveButton.addEventListener('click', async () => {
@@ -84,7 +83,6 @@ reservation-api
 };
 
 document.addEventListener('click', function (event) {
-reservation-api
     console.log({ data: event.target.dataset.country})
     if (event.target.classList.contains('btn-reservation')) {
         createReservationForm(event.target.dataset.country);
@@ -94,7 +92,7 @@ reservation-api
 const getReservation = async (itemId, formContainer) => {
     const getResponse = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${appId}/reservations?item_id=${itemId}`)
     if(getResponse.ok){
-    const events = await getResponse.json() 
+    const events = await getResponse.json()
       events.forEach((event) => {
           const reservationInfo = document.createElement('div');
            reservationInfo.innerHTML = `
