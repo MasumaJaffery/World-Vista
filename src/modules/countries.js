@@ -1,3 +1,4 @@
+import {itemcount} from './home-counter.js'
 const getcountry = async () => {
   try {
     const response = await fetch('https://restcountries.com/v3.1/all');
@@ -39,10 +40,4 @@ getcountry();
     countries.appendChild(country);
     //itemcount() is callback func here!
     itemcount();
-}
-// Countries Card Counter!
-const itemcount = async () => {
-  const count = document.getElementById('count');
-  const countries = document.querySelectorAll('.country');
-  count.textContent = `(${countries.length}) `;
 }
