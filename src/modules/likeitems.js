@@ -96,4 +96,3 @@ document.addEventListener('click', async (event) => {
 
 // Call updateLikeCounter on initial page load
 updateLikeCounter();
-
