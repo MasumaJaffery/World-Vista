@@ -1,7 +1,6 @@
 const countriesArray = []; // Array to store the country objects
 const involvementApiEndpoint = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/FjhFMUdws0lCxR3eXCdS/likes';
-const iconbtn = document.querySelector('.icon-btn');
-const likecounter = document.querySelector('.like-counter');
+
 // Fetching countries from REST Countries API
 fetch('https://restcountries.com/v2/all')
   .then(response => response.json())
@@ -53,4 +52,45 @@ async function sendLikeRequest(country) {
     console.error(`Error liking ${country.name}:`, error);
   }
 }
+
+// Function to update the like counter
+async function updateLikeCounter() {
+  try {
+    const response = await fetch(involvementApiEndpoint);
+    const data = await response.json();
+    const likecounter = document.querySelector('.like-counter');
+    likecounter.innerHTML = data.length;
+  } catch (error) {
+    console.error('Error updating like counter:', error);
+  }
+}
+
+document.addEventListener('click', async (event) => {
+  if (event.target.classList.contains('icon-btn')) {
+    const id = 'item_id';
+    try {
+      const response = await fetch(involvementApiEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          item_id: id,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message);
+      }
+
+      await updateLikeCounter();
+      console.log('Like added');
+    } catch (error) {
+      console.error(error);
+    }
+  }
+});
+
+
+// Call updateLikeCounter on initial page load
+updateLikeCounter();
 
