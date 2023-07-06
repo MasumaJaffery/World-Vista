@@ -11,7 +11,7 @@ const createReservationForm = async (itemId) => {
     const title = document.createElement('h1');
     title.textContent = 'Add a Reservation';
 
-    const counterElem = document.createElement('h1')
+    const counterElem = document.createElement('h5')
      counterElem.textContent = `Reservations: ${counter}`;
 
     const closeButton = document.createElement('button');
@@ -68,9 +68,9 @@ const createReservationForm = async (itemId) => {
     });
 
     // Append the elements to the form container
+    formContainer.appendChild(closeButton);
     formContainer.appendChild(title);
     formContainer.appendChild(counterElem);
-    formContainer.appendChild(closeButton);
     formContainer.appendChild(nameInput);
     formContainer.appendChild(startDateInput);
     formContainer.appendChild(endDateInput);
