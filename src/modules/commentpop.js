@@ -18,19 +18,43 @@ const openPopup = async (countryDetails) => {
   countryNameEl.textContent = countryDetails.name.common;
 
   const countryPopulationEl = document.createElement('div');
-  countryPopulationEl.classList.add('country-population');
+  countryPopulationEl.classList.add(
+    'country-population',
+    'container',
+    'custom-container',
+    'shadow-lg',
+    'bg-gradient-success'
+  );
   countryPopulationEl.textContent = `Population: ${countryDetails.population}`;
 
   const countryCapitalEl = document.createElement('div');
-  countryCapitalEl.classList.add('country-capital');
+  countryCapitalEl.classList.add(
+    'country-capital',
+    'container',
+    'custom-container',
+    'shadow-lg',
+    'bg-gradient-success'
+  );
   countryCapitalEl.textContent = `Capital: ${countryDetails.capital}`;
 
   const countryAreaEl = document.createElement('div');
-  countryAreaEl.classList.add('country-area');
+  countryAreaEl.classList.add(
+    'country-area',
+    'container',
+    'custom-container',
+    'shadow-lg',
+    'bg-gradient-success'
+  );
   countryAreaEl.textContent = `Area: ${countryDetails.area} km²`;
 
   const countryContinentEl = document.createElement('div');
-  countryContinentEl.classList.add('country-continent');
+  countryContinentEl.classList.add(
+    'country-continent',
+    'container',
+    'custom-container',
+    'shadow-lg',
+    'bg-gradient-success'
+  );
   countryContinentEl.textContent = `Continent: ${countryDetails.region}`;
 
   const commentsContainer = document.createElement('div');
@@ -54,15 +78,15 @@ const openPopup = async (countryDetails) => {
   const nameInput = document.createElement('input');
   nameInput.setAttribute('type', 'text');
   nameInput.setAttribute('placeholder', 'Your Name');
-  nameInput.classList.add('name-input');
+  nameInput.classList.add('name-input', 'form-control');
 
   const commentInput = document.createElement('textarea');
   commentInput.setAttribute('placeholder', 'Your Comment');
-  commentInput.classList.add('comment-input');
+  commentInput.classList.add('comment-input', 'form-control');
 
   const submitButton = document.createElement('button');
   submitButton.setAttribute('type', 'submit');
-  submitButton.classList.add('submit-button');
+  submitButton.classList.add('submit-button', 'btn', 'btn-primary');
   submitButton.textContent = 'Submit';
 
   commentsForm.appendChild(nameInput);
@@ -96,15 +120,17 @@ const openPopup = async (countryDetails) => {
 
   const commentsArray = [];
   // Make displayfunction to display comment from api to screen
-
   const displayComment = (comment) => {
-    console.log('Comment:', comment);
-
     const commentEl = document.createElement('div');
     commentEl.classList.add('comment');
 
-    const commentText = document.createElement('div');
-    commentText.classList.add('comment-text');
+    const commentText = document.createElement('li');
+    commentText.classList.add(
+      'comment-text',
+      'container',
+      'custom-container',
+      'shadow-sm'
+    );
 
     let commentDate;
     try {
@@ -115,23 +141,24 @@ const openPopup = async (countryDetails) => {
       commentDate = null;
     }
 
-    let commentDateString;
-
-    if (!commentDate || isNaN(commentDate)) {
-      // Handle the case where the date is invalid or parsing failed
-      commentDateString = 'Invalid Date';
-    } else {
-      const options = { year: 'numeric', month: 'long', day: 'numeric' };
-      commentDateString = commentDate.toLocaleDateString(undefined, options);
+    let commentDateString = '';
+    if (comment) {
+      if (commentDate && !isNaN(commentDate)) {
+        const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+        commentDateString = commentDate.toLocaleDateString(undefined, options);
+      }
     }
 
-    const commentInfo = `${commentDateString}  ${comment.username}: ${comment.comment}`;
+    const commentInfo = `${commentDateString}  ${
+      comment ? comment.username : ''
+    }: ${comment ? comment.comment : ''}`;
     commentText.textContent = commentInfo;
 
     commentEl.appendChild(commentText);
     commentsList.appendChild(commentEl);
 
-    commentsArray.push(commentDateString); // Save the formatted comment date to the array
+    const commentCount = commentsList.childElementCount;
+    commentsCount.textContent = `Comment (${commentCount})`; // Display the actual comment count
   };
 
   // Fetch and display comments
@@ -143,10 +170,8 @@ const openPopup = async (countryDetails) => {
     );
     const comments = await response.json();
     const commentCount = comments.length;
-    const commentText =
-      commentCount !== 0 ? `Comment(${commentCount})` : 'Comment(0)';
+    const commentText = `Comment (${commentCount})`;
     commentsCount.textContent = commentText;
-
     comments.forEach((comment) => {
       displayComment(comment);
     });
@@ -167,7 +192,7 @@ const openPopup = async (countryDetails) => {
     nameInput.value = '';
     commentInput.value = '';
 
-    const currentDate = new Date().toISOString(); // Save current date in ISO format
+    const currentDate = new Date().toLocaleDateString(); // Save current date in ISO format
 
     try {
       const response = await fetch(

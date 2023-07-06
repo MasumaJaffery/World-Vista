@@ -120,9 +120,13 @@ footer {
 
 .comments-form {
   display: flex;
+  justify-self: center;
   flex-direction: column;
   gap: 3px;
-  max-width: 90%;
+  max-width: 100%;
+  align-self: center;
+  padding: 0;
+  margin: 0;
 }
 
 .comments-list {
@@ -131,6 +135,9 @@ footer {
 
 .comment-text {
   max-width: 350px;
+  word-wrap: break-word;
+  text-align: start;
+  list-style: none;
 }
 
 /* style for mobile screen */
