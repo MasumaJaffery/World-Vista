@@ -1,3 +1,5 @@
+import getReservationCount from './reservationcounter.js';
+
 const appId = 'FjhFMUdws0lCxR3eXCdS';
 
 const createReservationForm = async (itemId) => {
@@ -6,7 +8,7 @@ const createReservationForm = async (itemId) => {
 
   const formContainer = document.createElement('div');
   formContainer.className = 'form-container';
-  const counter = await getReservation(itemId, formContainer);
+  const counter = await getReservationCount(itemId, formContainer);
 
   const countryDetails = await getCountryDetails(itemId);
   const countryFlagEl = document.createElement('img');
@@ -36,10 +38,10 @@ const createReservationForm = async (itemId) => {
   const title = document.createElement('h1');
   title.textContent = 'Add a Reservation';
 
-  const counterElem = document.createElement('h1');
+  const counterElem = document.createElement('h5');
   counterElem.textContent = `Reservations: ${counter}`;
 
-  const closeButton = document.createElement('button');
+  const closeButton = document.createElement('span');
   closeButton.className = 'close-button';
   closeButton.innerHTML = '&times;';
   closeButton.addEventListener('click', () => {
@@ -80,7 +82,7 @@ const createReservationForm = async (itemId) => {
         }
       );
       if (response.ok) {
-        getReservation(itemId, formContainer);
+        createReservationForm(itemId);
       }
     } catch (error) {
       const errorLabel = document.createElement('label');
@@ -90,23 +92,23 @@ const createReservationForm = async (itemId) => {
   });
 
   // Append the elements to the form container
+  
+  popupContainer.appendChild(formContainer);
+  document.body.appendChild(popupContainer);
+  formContainer.appendChild(closeButton);
   formContainer.appendChild(countryFlagEl);
   formContainer.appendChild(countryNameEl);
   formContainer.appendChild(countryPopulationEl);
   formContainer.appendChild(countryCapitalEl);
   formContainer.appendChild(countryAreaEl);
-  formContainer.appendChild(countryContinentEl);
-  formContainer.appendChild(title);
+  formContainer.appendChild(countryContinentEl);  
   formContainer.appendChild(counterElem);
-  formContainer.appendChild(closeButton);
+  formContainer.appendChild(await getReservation(itemId, formContainer));
+  formContainer.appendChild(title);
   formContainer.appendChild(nameInput);
   formContainer.appendChild(startDateInput);
   formContainer.appendChild(endDateInput);
   formContainer.appendChild(reserveButton);
-
-  popupContainer.appendChild(formContainer);
-
-  document.body.appendChild(popupContainer);
 };
 
 const getCountryDetails = async (countryName) => {
@@ -132,21 +134,39 @@ document.addEventListener('click', function (event) {
 const getReservation = async (itemId, formContainer) => {
   const getResponse = await fetch(
     `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${appId}/reservations?item_id=${itemId}`
-  );
+  ); 
+  const reservationInfo = document.createElement('div');
   if (getResponse.ok) {
-    const events = await getResponse.json();
-    events.forEach((event) => {
-      const reservationInfo = document.createElement('div');
-      reservationInfo.innerHTML = `
+    const events = await getResponse.json(); 
+   
+    events.forEach((event) => { 
+      reservationInfo.innerHTML += `
               <h3>Reservation Details:</h3>
               <p>Name: ${event.username}</p>
               <p>Start Date: ${event.date_start}</p>
               <p>End Date: ${event.date_end}</p>
              `;
-      formContainer.appendChild(reservationInfo);
+      //formContainer.appendChild(reservationInfo);
     });
 
-    return events.length;
+    return reservationInfo;
   }
-  return 0;
+  return reservationInfo;
 };
+
+
+// const getReservationCount = async (itemId, formContainer) => {
+//   let countervalue = 0; 
+//   const getResponse = await fetch(
+//     `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${appId}/reservations?item_id=${itemId}`
+//   );
+//   if (getResponse.ok) {
+//     const events = await getResponse.json();
+//     events.forEach((event) => {
+//       countervalue = countervalue + 1;
+//     });
+
+//     return countervalue;
+//   }
+//   return 0;
+// };

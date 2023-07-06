@@ -29,6 +29,7 @@ input[type='date'] {
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
+  
 }
 
 button {
@@ -102,16 +103,23 @@ footer {
 }
 
 .form-container {
+  position: fixed;
   background-color: #fff;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  max-width: 400px;
-  overflow: auto;
-  height: 90vh;
+  width: 50vw;
+  overflow-y: scroll;
+  max-height: 90vh;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .close-button {
+  display: flex;
+  justify-content: flex-end;
   background-color: transparent;
   border: none;
   font-size: 20px;
@@ -119,8 +127,9 @@ footer {
   float: right;
   color: black;
   position: relative;
-  bottom: 81px;
-  left: 180px;
+  max-width: 1rem;
+  align-self: flex-end;
+  margin-top: -0.5rem;
 }
 
 .close-button:hover {
@@ -162,6 +171,9 @@ footer {
   display: grid;
   grid-template-columns: 1fr 1fr;
   text-align: start;
+  justify-items: center;
+  align-items: center;
+  gap: 10px;
 }
 
 .country-capital {
@@ -175,9 +187,11 @@ footer {
 .country-flag {
   width: 300px;
   height: 200px;
-  text-align: center;
   box-shadow: 2px 8px 4px rgba(0, 0, 0, 0.2);
   background-color: aliceblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .popup-icon {
@@ -188,6 +202,7 @@ footer {
 }
 
 .country-name {
+  text-align: center;
   padding: 20px;
 }
 
