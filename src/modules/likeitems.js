@@ -59,11 +59,16 @@ async function updateLikeCounter() {
     const response = await fetch(involvementApiEndpoint);
     const data = await response.json();
     const likecounter = document.querySelector('.like-counter');
-    likecounter.innerHTML = data.length;
+    if (likecounter) {
+      likecounter.innerHTML = data.length;
+    } else {
+      console.error('Error: Unable to find the like counter element.');
+    }
   } catch (error) {
     console.error('Error updating like counter:', error);
   }
 }
+
 
 document.addEventListener('click', async (event) => {
   if (event.target.classList.contains('icon-btn')) {
