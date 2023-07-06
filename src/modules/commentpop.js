@@ -141,11 +141,9 @@ const openPopup = async (countryDetails) => {
     }
 
     let commentDateString = '';
-    if (comment) {
-      if (commentDate && !isNaN(commentDate)) {
-        const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
-        commentDateString = commentDate.toLocaleDateString(undefined, options);
-      }
+    if (commentDate && !isNaN(commentDate)) {
+      const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+      commentDateString = commentDate.toLocaleDateString(undefined, options);
     }
 
     const commentInfo = `${commentDateString}  ${
@@ -156,8 +154,12 @@ const openPopup = async (countryDetails) => {
     commentEl.appendChild(commentText);
     commentsList.appendChild(commentEl);
 
-    const commentCount = commentsList.childElementCount;
-    commentsCount.textContent = `Comment (${commentCount})`; // Display the actual comment count
+    const commentCount = commentsList.querySelectorAll('.comment').length || 0;
+    commentsCount.textContent = `Comment (${commentCount})`;
+
+    if (commentCount === 0) {
+      commentsCount.textContent = 'Comment (0)';
+    }
   };
 
   // Fetch and display comments
@@ -184,7 +186,6 @@ const openPopup = async (countryDetails) => {
     const comment = commentInput.value;
 
     if (!name || !comment) {
-      // Check if name or comment input is empty
       return;
     }
 
@@ -218,10 +219,27 @@ const openPopup = async (countryDetails) => {
           date: currentDate,
         };
         displayComment(newComment);
-        const commentCount = commentsList.childElementCount;
-        commentsCount.textContent = ` Comment${
-          commentCount !== 1 ? 's' : ''
-        } (${commentCount})`;
+
+        // Fetch and display all comments again
+        const commentsResponse = await fetch(
+          `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/FjhFMUdws0lCxR3eXCdS/comments?item_id=${encodeURIComponent(
+            countryDetails.name.common
+          )}`
+        );
+        const comments = await commentsResponse.json();
+        const commentCount = comments.length;
+        const commentText =
+          commentCount === 0 ? 'Comment (0)' : `Comment (${commentCount})`;
+        commentsCount.textContent = commentText;
+
+        // Clear the existing comments
+        commentsList.innerHTML = '';
+
+        if (commentCount > 0) {
+          comments.forEach((comment) => {
+            displayComment(comment);
+          });
+        }
       } else {
         console.log('Error: Failed to save comment');
       }
@@ -232,6 +250,8 @@ const openPopup = async (countryDetails) => {
 
   document.body.appendChild(popContainer);
 };
+
+// event listenner for comment button
 
 document.addEventListener('click', async (event) => {
   if (event.target.classList.contains('btn-commentt')) {
