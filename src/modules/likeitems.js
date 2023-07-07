@@ -44,7 +44,7 @@ async function sendLikeRequest(country) {
     });
 
     if (response.ok) {
-      console.log(`Liked ${country.name}`);
+      console.log('ok');
     } else {
       console.error(`Failed to like ${country.name}`);
     }
@@ -58,15 +58,15 @@ async function updateLikeCounter() {
   try {
     const response = await fetch(involvementApiEndpoint);
     const data = await response.json();
-    console.log(data)
     const likecounter = document.querySelectorAll('.like-counter');
-    if (likecounter.length > 0) {
-      likecounter.forEach(like => {
-        like.innerHTML = data.length;
-      });
-    } else {
-      console.error('Error: Unable to find the like counter elements.');
-    }
+    likecounter.forEach((like, index) => {
+      if (index < data.length) {
+        const selectedItem = data[index];
+        like.innerHTML = selectedItem.likes;
+      } else {
+        console.error(`Error: No corresponding item found for like counter at index ${index}.`);
+      }
+    });
   } catch (error) {
     console.error('Error updating like counter:', error);
   }
@@ -98,4 +98,3 @@ document.addEventListener('click', async (event) => {
 
 // Call updateLikeCounter on initial page load
 updateLikeCounter();
-
