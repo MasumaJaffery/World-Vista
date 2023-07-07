@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: #2389ff;
+  background-color: #fff;
 }
 
 h5 {
@@ -86,12 +86,20 @@ footer {
 .countries {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  padding: 2rem;
+  padding: 0 2%;
 }
 
 .country {
   margin: 0.6rem;
-  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.125);
+  box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.125);
+  border-radius: 5px;
+}
+
+.like {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
 }
 
 .btn {
@@ -126,8 +134,7 @@ footer {
 }
 
 .like-counter {
-  text-align: end;
-  margin-left: 90%;
+  text-align: start;
 }
 
 /* style fro reservation */
@@ -152,7 +159,7 @@ footer {
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width: 50vw;
+  width: 90vh;
   overflow-y: scroll;
   max-height: 90vh;
   z-index: 9999;
@@ -278,5 +285,8 @@ footer {
   .popup-container {
     width: 90vw;
     height: 90vh;
+  }
+  .form-container {
+    width: 45vh;
   }
 }

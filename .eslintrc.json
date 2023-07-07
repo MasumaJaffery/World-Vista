@@ -30,6 +30,7 @@
     "build/",
     "src/modules/functions.js",
     "src/modules/functions.test.js",
-    "src/modules/comment.js"
+    "src/modules/comment.js",
+    "src/modules/reservationcounter.js"
   ]
 }
