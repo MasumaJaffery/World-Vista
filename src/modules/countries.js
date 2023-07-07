@@ -7,6 +7,7 @@ const getcountry = async () => {
     data.forEach((item) => {
       postcountry(item);
     });
+
   } catch (error) {
     console.log('Error');
   }
@@ -38,5 +39,6 @@ const postcountry = async (data) => {
         
       </div>
     </div>`;
+
   countries.appendChild(country);
 };
