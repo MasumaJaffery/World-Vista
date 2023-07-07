@@ -1,4 +1,4 @@
-const { itemcount } = require('../home-counter.js');
+const { itemcount } = require('../modules/home-counter.js');
 describe('itemcount', () => {
   it('updates the count element with the correct number', () => {
     // Mock the DOM elements
