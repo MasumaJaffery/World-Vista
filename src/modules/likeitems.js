@@ -88,6 +88,12 @@ async function sendLikeRequest(countryName) {
 
     if (response.ok) {
       console.log('Like added for item:', countryName);
+
+      // Save the like count in localStorage
+      const likeData = JSON.parse(localStorage.getItem(countryName)) || {};
+      likeData.likes = (likeData.likes || 0) + 1;
+      localStorage.setItem(countryName, JSON.stringify(likeData));
+
       return true; // Indicate successful like request
     } else {
       console.error('Failed to like item:', countryName);
@@ -111,7 +117,14 @@ async function updateLikeCounters() {
       const countryName = likeCounter.getAttribute('data-country');
       const likeData = involvementApiData.find(likeItem => likeItem.item_id === countryName);
       const likes = likeData ? likeData.likes : 0;
+
+      // Update the like counter on the screen
       likeCounter.textContent = likes;
+
+      // Update the like count in localStorage
+      const storedLikes = JSON.parse(localStorage.getItem(countryName)) || {};
+      storedLikes.likes = likes;
+      localStorage.setItem(countryName, JSON.stringify(storedLikes));
     });
   } catch (error) {
     console.error('Error updating like counters:', error);
@@ -119,5 +132,11 @@ async function updateLikeCounters() {
 }
 
 // Call the fetchData function on page load
-document.addEventListener('DOMContentLoaded', fetchData);
+document.addEventListener('DOMContentLoaded', () => {
+  // Fetch the like count from localStorage and update the like counters
+  updateLikeCounters();
+
+  // Fetch data from APIs and update the screen
+  fetchData();
+});
 
