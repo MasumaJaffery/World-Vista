@@ -71,7 +71,7 @@ footer {
 
 .countries {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   padding: 2rem;
 }
 
@@ -83,6 +83,32 @@ footer {
 .btn {
   width: 100%;
   margin-top: 0.125rem;
+}
+
+.btn-like {
+  background-color: white;
+  text-align: end;
+}
+
+.btn-like i {
+  color: black;
+  font-size: 30px;
+}
+
+.btn-like:hover i {
+  color: green;
+}
+
+.btn-like.liked i {
+  color: red;
+}
+
+.btn-like:hover {
+  background-color: white;
+}
+
+.btn-like i.filled {
+  color: red;
 }
 
 /* style fro reservation */

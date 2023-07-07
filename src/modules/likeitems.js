@@ -1,81 +1,130 @@
-const appId = 'qYk4MmxOGQlkjli4wjeP';
+const involvementApiEndpoint =
+  'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/FjhFMUdws0lCxR3eXCdS';
+const baseApiEndpoint = 'https://restcountries.com/v2/all';
 
-const updateLikeCounter = async () => {
-  const countries = document.querySelectorAll('.country');
-  countries.forEach(async (country) => {
-    const likeButton = country.querySelector('.btn-like');
-    const likeCounter = country.querySelector('.like-counter');
-    const countryId = likeButton.getAttribute('data-country');
-
-    try {
-      const response = await fetch(
-        `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${appId}/likes?item_id=${countryId}`
-      );
-      const likesData = await response.json();
-      likeCounter.textContent = likesData.length;
-    } catch (error) {
-      console.log('Error:', error);
-    }
-  });
-};
-
-const sendLike = async (countryId) => {
+// Fetch data from the base API and the Involvement API
+async function fetchData() {
   try {
-    const response = await fetch(
-      `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${appId}/likes`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          item_id: countryId,
-        }),
-      }
-    );
+    const [baseApiResponse, involvementApiResponse] = await Promise.all([
+      fetch(baseApiEndpoint),
+      fetch(`${involvementApiEndpoint}/likes`),
+    ]);
 
-    if (response.ok) {
-      return {
-        success: true,
-      };
-    } else {
-      return {
-        success: false,
-      };
-    }
+    const baseApiData = await baseApiResponse.json();
+    const involvementApiData = await involvementApiResponse.json();
+
+    const combinedData = combineData(baseApiData, involvementApiData);
+    updateScreen(combinedData);
   } catch (error) {
-    console.error(error);
-    return {
-      success: false,
-      error: error.message || 'Unexpected error',
-    };
+    console.error('Error fetching data:', error);
   }
-};
+}
 
-export const attachLikeEventListeners = () => {
-  const likeButtons = document.querySelectorAll('.btn-like');
+// Function to combine data from the base API and the Involvement API
+function combineData(baseApiData, involvementApiData) {
+  const combinedData = baseApiData.map((item) => {
+    const likeData = involvementApiData.find(
+      (likeItem) => likeItem.item_id === item.name.common
+    );
+    const likes = likeData ? likeData.likes : 0;
 
-  likeButtons.forEach((button) => {
-    const likeCounter = button.nextElementSibling;
+    return {
+      ...item,
+      likes,
+    };
+  });
 
-    button.addEventListener('click', async () => {
-      const countryId = button.getAttribute('data-country');
-      const response = await sendLike(countryId);
-      if (response.success) {
-        const updatedLikesData = await updateLikeCounter(); 
-        const countryLikes = updatedLikesData.filter(
-          (like) => like.item_id === countryId
-        );
-        likeCounter.textContent = countryLikes.length;
-      } else {
-        console.error('Failed to send like');
+  return combinedData;
+}
+
+// Function to update the screen with the combined data
+function updateScreen(data) {
+  const iconButtons = document.querySelectorAll('.icon-btn');
+  const likeCounters = document.querySelectorAll('.like-counter');
+  iconButtons.forEach((iconButton, index) => {
+    const countryName = iconButton.getAttribute('data-country');
+    iconButton.dataset.country = countryName;
+    likeCounters[index].dataset.country = countryName;
+    iconButton.addEventListener('click', async () => {
+      try {
+        const success = await sendLikeRequest(countryName);
+        if (success) {
+          iconButton.classList.toggle('liked');
+          await updateLikeCounters();
+        }
+      } catch (error) {
+        console.error(error);
       }
     });
   });
-};
 
-// Call updateLikeCounter on initial page load
-updateLikeCounter();
+  // Update the like counter values
+  likeCounters.forEach((likeCounter) => {
+    const countryName = likeCounter.getAttribute('data-country');
+    const item = data.find((item) => item.name.common === countryName);
+    likeCounter.textContent = item ? item.likes : 0;
+  });
+}
 
-// Attach event listeners to like buttons
-attachLikeEventListeners();
+// Function to send a POST request to the Involvement API when the Like button is clicked
+async function sendLikeRequest(countryName) {
+  try {
+    const response = await fetch(`${involvementApiEndpoint}/likes`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        item_id: countryName,
+      }),
+    });
+
+    if (response.ok) {
+      console.log('Like added for item:', countryName);
+      const likeData = JSON.parse(localStorage.getItem(countryName)) || {};
+      likeData.likes = (likeData.likes || 0) + 1;
+      localStorage.setItem(countryName, JSON.stringify(likeData));
+
+      return true;
+    } else {
+      console.error('Failed to like item:', countryName);
+      return false;
+    }
+  } catch (error) {
+    console.error('Error liking item:', countryName, error);
+    return false;
+  }
+}
+
+// Function to update the like counters
+async function updateLikeCounters() {
+  try {
+    const involvementApiResponse = await fetch(
+      `${involvementApiEndpoint}/likes`
+    );
+    const involvementApiData = await involvementApiResponse.json();
+
+    const likeCounters = document.querySelectorAll('.like-counter');
+
+    likeCounters.forEach((likeCounter) => {
+      const countryName = likeCounter.getAttribute('data-country');
+      const likeData = involvementApiData.find(
+        (likeItem) => likeItem.item_id === countryName
+      );
+      const likes = likeData ? likeData.likes : 0;
+      likeCounter.textContent = likes;
+      const storedLikes = JSON.parse(localStorage.getItem(countryName)) || {};
+      storedLikes.likes = likes;
+      localStorage.setItem(countryName, JSON.stringify(storedLikes));
+    });
+  } catch (error) {
+    console.error('Error updating like counters:', error);
+  }
+}
+
+// Call the fetchData function on page load
+document.addEventListener('DOMContentLoaded', async () => {
+  // Fetch data from APIs and update the screen
+  await fetchData();
+  updateLikeCounters();
+});

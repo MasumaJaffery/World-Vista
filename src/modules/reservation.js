@@ -148,7 +148,6 @@ const getCountryDetails = async (countryName) => {
 };
 
 document.addEventListener('click', function (event) {
-  console.log({ data: event.target.dataset.country });
   if (event.target.classList.contains('btn-reservation')) {
     createReservationForm(event.target.dataset.country);
   }
