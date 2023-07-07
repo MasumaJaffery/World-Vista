@@ -63,6 +63,20 @@ footer {
   gap: 2.5rem;
 }
 
+.navbar-brand::before {
+  content: '';
+  background-image: url('./assets/icons/earth_logo.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 30px;
+  background-color: green;
+  border: 3px solid crimson;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 10px;
+}
+
 /* BODY STYLE */
 
 .card-body {
