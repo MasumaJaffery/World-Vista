@@ -170,7 +170,7 @@ const openPopup = async (countryDetails) => {
     );
     const comments = await response.json();
     const commentCount = comments.length;
-    const commentText = `Comment (${commentCount})`;
+    const commentText = commentCount > 0 ? `Comment (${commentCount})` : 'Comment (0)';
     commentsCount.textContent = commentText;
     comments.forEach((comment) => {
       displayComment(comment);
