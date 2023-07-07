@@ -1,82 +1,130 @@
-import './countries.js';
-const id = 'abcdefg';
-const baseAPI = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps';
-const likeURL = `${baseAPI}/${id}/likes`;
-const iconbtn = document.querySelector('.icon-btn');
-const likecounter = document.querySelector('.like-counter');
+const involvementApiEndpoint =
+  'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/FjhFMUdws0lCxR3eXCdS';
+const baseApiEndpoint = 'https://restcountries.com/v2/all';
 
-const getLikes = async () => {
+// Fetch data from the base API and the Involvement API
+async function fetchData() {
   try {
-    const result = await fetch(likeURL);
-    const data = await result.json();
-    return data;
+    const [baseApiResponse, involvementApiResponse] = await Promise.all([
+      fetch(baseApiEndpoint),
+      fetch(`${involvementApiEndpoint}/likes`),
+    ]);
+
+    const baseApiData = await baseApiResponse.json();
+    const involvementApiData = await involvementApiResponse.json();
+
+    const combinedData = combineData(baseApiData, involvementApiData);
+    updateScreen(combinedData);
   } catch (error) {
-    return {
-      Response: 'False',
-      Error: error.message || 'Unexpected error',
-    };
+    console.error('Error fetching data:', error);
   }
-};
+}
 
-const updateLikeCounter = async () => {
-  const likesData = await getLikes();
-  likecounter.innerHTML = likesData.length;
-};
+// Function to combine data from the base API and the Involvement API
+function combineData(baseApiData, involvementApiData) {
+  const combinedData = baseApiData.map((item) => {
+    const likeData = involvementApiData.find(
+      (likeItem) => likeItem.item_id === item.name.common
+    );
+    const likes = likeData ? likeData.likes : 0;
 
-// Event listener for adding likes
-iconbtn.addEventListener('click', async () => {
+    return {
+      ...item,
+      likes,
+    };
+  });
+
+  return combinedData;
+}
+
+// Function to update the screen with the combined data
+function updateScreen(data) {
+  const iconButtons = document.querySelectorAll('.icon-btn');
+  const likeCounters = document.querySelectorAll('.like-counter');
+  iconButtons.forEach((iconButton, index) => {
+    const countryName = iconButton.getAttribute('data-country');
+    iconButton.dataset.country = countryName;
+    likeCounters[index].dataset.country = countryName;
+    iconButton.addEventListener('click', async () => {
+      try {
+        const success = await sendLikeRequest(countryName);
+        if (success) {
+          iconButton.classList.toggle('liked');
+          await updateLikeCounters();
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    });
+  });
+
+  // Update the like counter values
+  likeCounters.forEach((likeCounter) => {
+    const countryName = likeCounter.getAttribute('data-country');
+    const item = data.find((item) => item.name.common === countryName);
+    likeCounter.textContent = item ? item.likes : 0;
+  });
+}
+
+// Function to send a POST request to the Involvement API when the Like button is clicked
+async function sendLikeRequest(countryName) {
   try {
-    const response = await fetch(likeURL, {
+    const response = await fetch(`${involvementApiEndpoint}/likes`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
-        item_id: id,
+        item_id: countryName,
       }),
     });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message);
-    }
+    if (response.ok) {
+      console.log('Like added for item:', countryName);
+      const likeData = JSON.parse(localStorage.getItem(countryName)) || {};
+      likeData.likes = (likeData.likes || 0) + 1;
+      localStorage.setItem(countryName, JSON.stringify(likeData));
 
-    await updateLikeCounter();
-    console.log('Like added');
+      return true;
+    } else {
+      console.error('Failed to like item:', countryName);
+      return false;
+    }
   } catch (error) {
-    console.error(error);
+    console.error('Error liking item:', countryName, error);
+    return false;
   }
+}
+
+// Function to update the like counters
+async function updateLikeCounters() {
+  try {
+    const involvementApiResponse = await fetch(
+      `${involvementApiEndpoint}/likes`
+    );
+    const involvementApiData = await involvementApiResponse.json();
+
+    const likeCounters = document.querySelectorAll('.like-counter');
+
+    likeCounters.forEach((likeCounter) => {
+      const countryName = likeCounter.getAttribute('data-country');
+      const likeData = involvementApiData.find(
+        (likeItem) => likeItem.item_id === countryName
+      );
+      const likes = likeData ? likeData.likes : 0;
+      likeCounter.textContent = likes;
+      const storedLikes = JSON.parse(localStorage.getItem(countryName)) || {};
+      storedLikes.likes = likes;
+      localStorage.setItem(countryName, JSON.stringify(storedLikes));
+    });
+  } catch (error) {
+    console.error('Error updating like counters:', error);
+  }
+}
+
+// Call the fetchData function on page load
+document.addEventListener('DOMContentLoaded', async () => {
+  // Fetch data from APIs and update the screen
+  await fetchData();
+  updateLikeCounters();
 });
-
-// Call updateLikeCounter on initial page load
-updateLikeCounter();
-
-export const loadLikes = async () => {
-  // Load likes data
-  const likesData = await getLikes();
-  return likesData;
-};
-
-export const sendLike = async (itemId) => {
-  try {
-    const response = await fetch(likeURL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        item_id: itemId,
-      }),
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message);
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-    return {
-      Response: 'False',
-      Error: error.message || 'Unexpected error',
-    };
-  }
-};

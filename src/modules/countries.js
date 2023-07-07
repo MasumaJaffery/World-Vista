@@ -40,4 +40,3 @@ const postcountry = async (data) => {
     </div>`;
   countries.appendChild(country);
 };
-
