@@ -31,7 +31,7 @@ After you're finished please remove all the comments and instructions!
 <!--   <img src="murple_logo.png" alt="logo" width="140"  height="auto" /> -->
   <br/>
 
-  <h1><b>Wordl vista</b></h1>
+  <h1><b>World Vista</b></h1>
 
 </div>
 
