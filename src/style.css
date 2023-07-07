@@ -125,6 +125,11 @@ footer {
   color: red;
 }
 
+.like-counter {
+  text-align: end;
+  margin-left: 90%;
+}
+
 /* style fro reservation */
 
 .popup {
