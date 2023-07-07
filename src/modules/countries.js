@@ -22,10 +22,10 @@ getcountry();
      <div class = "card-flex">
      <h5>${data.name.common}</h5>
      <div class = "icon-counter">
-     <button type = "button" class = "icon-btn" data-country = "Jordan"><i class="fa-regular fa-heart"></i>
+     <button type = "button" class = "icon-btn" data-country = "${data.name.common}"><i class="fa-solid fa-heart" style="color: #ff0000;"></i>
      </button>
      <div class = "like">
-     <span class="like-counter" data-country = "Jordan"></span><span> like's</span></div>
+     <span class="like-counter" data-country = "${data.name.common}"></span><span> like's</span></div>
      </div>
      </div>
      <div class ="comment">
@@ -46,3 +46,4 @@ const itemcount = async () => {
   const countries = document.querySelectorAll('.country');
   count.textContent = `(${countries.length}) `;
 }
+
