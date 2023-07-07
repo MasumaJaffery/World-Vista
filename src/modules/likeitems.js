@@ -1,30 +1,80 @@
-const countriesArray = [];
 const involvementApiEndpoint = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/FjhFMUdws0lCxR3eXCdS';
+const baseApiEndpoint = 'https://restcountries.com/v2/all';
 
-// Fetching countries from REST Countries API
-async function fetchCountries() {
+// Fetch data from the base API and the Involvement API
+async function fetchData() {
   try {
-    const response = await fetch('https://restcountries.com/v2/all');
-    const data = await response.json();
+    const [baseApiResponse, involvementApiResponse] = await Promise.all([
+      fetch(baseApiEndpoint),
+      fetch(`${involvementApiEndpoint}/likes`),
+    ]);
 
-    data.forEach(country => {
-      const { name, capital, population, area } = country;
-      const countryObj = { name, capital, population, area };
-      countriesArray.push(countryObj);
-    });
+    const baseApiData = await baseApiResponse.json();
+    const involvementApiData = await involvementApiResponse.json();
 
-    // Send like requests for each country
-    await Promise.all(countriesArray.map(sendLikeRequest));
+    // Combine the data from the base API and Involvement API as per your requirements
+    const combinedData = combineData(baseApiData, involvementApiData);
 
-    // Update like counters
-    await updateLikeCounter();
+    // Update the screen with the combined data
+    updateScreen(combinedData);
   } catch (error) {
-    console.log('Error:', error);
+    console.error('Error fetching data:', error);
   }
 }
 
-// Function to send a POST request to the Involvement API for a specific country
-async function sendLikeRequest(country) {
+// Function to combine data from the base API and the Involvement API
+function combineData(baseApiData, involvementApiData) {
+  // Combine the data from the base API and the Involvement API as per your requirements
+  // For example, you can map over the baseApiData and add the corresponding like count from the involvementApiData
+  const combinedData = baseApiData.map(item => {
+    const likeData = involvementApiData.find(likeItem => likeItem.item_id === item.name.common);
+    const likes = likeData ? likeData.likes : 0;
+
+    return {
+      ...item,
+      likes,
+    };
+  });
+
+  return combinedData;
+}
+
+// Function to update the screen with the combined data
+function updateScreen(data) {
+  const iconButtons = document.querySelectorAll('.icon-btn');
+  const likeCounters = document.querySelectorAll('.like-counter');
+
+  // Iterate over the icon buttons and like counters to update their data and event listeners
+  iconButtons.forEach((iconButton, index) => {
+    const countryName = iconButton.getAttribute('data-country');
+
+    // Update the data-country attribute of the icon button and like counter
+    iconButton.dataset.country = countryName;
+    likeCounters[index].dataset.country = countryName;
+
+    // Add event listener to the icon button for recording the like
+    iconButton.addEventListener('click', async () => {
+      try {
+        const success = await sendLikeRequest(countryName);
+        if (success) {
+          await updateLikeCounters(); // Update the like counters after the like request is sent
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    });
+  });
+
+  // Update the like counter values
+  likeCounters.forEach(likeCounter => {
+    const countryName = likeCounter.getAttribute('data-country');
+    const item = data.find(item => item.name.common === countryName);
+    likeCounter.textContent = item ? item.likes : 0;
+  });
+}
+
+// Function to send a POST request to the Involvement API when the Like button is clicked
+async function sendLikeRequest(countryName) {
   try {
     const response = await fetch(`${involvementApiEndpoint}/likes`, {
       method: 'POST',
@@ -32,62 +82,42 @@ async function sendLikeRequest(country) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        item_id: country.name,
+        item_id: countryName,
       }),
     });
 
     if (response.ok) {
-      console.log('Like added for', country.name);
+      console.log('Like added for item:', countryName);
       return true; // Indicate successful like request
     } else {
-      console.error(`Failed to like ${country.name}`);
+      console.error('Failed to like item:', countryName);
       return false; // Indicate failed like request
     }
   } catch (error) {
-    console.error(`Error liking ${country.name}:`, error);
+    console.error('Error liking item:', countryName, error);
     return false; // Indicate failed like request
   }
 }
 
-// Function to update the like counter
-async function updateLikeCounter() {
+// Function to update the like counters
+async function updateLikeCounters() {
   try {
-    const response = await fetch(`${involvementApiEndpoint}/likes`);
-    const data = await response.json();
-    const likecounters = document.querySelectorAll('.like-counter');
+    const involvementApiResponse = await fetch(`${involvementApiEndpoint}/likes`);
+    const involvementApiData = await involvementApiResponse.json();
 
-    likecounters.forEach(likecounter => {
-      const countryName = likecounter.dataset.country;
-      console.log('Country Name:', countryName);
-      const selectedItem = data.find(item => String(item.item_id).toLowerCase() === String(countryName).toLowerCase());
-      console.log('Selected Item:', selectedItem);
+    const likeCounters = document.querySelectorAll('.like-counter');
 
-      if (selectedItem) {
-        likecounter.innerHTML = selectedItem.likes;
-      } else {
-        console.error(`Error: No corresponding item found for like counter of ${countryName}.`);
-      }
+    likeCounters.forEach(likeCounter => {
+      const countryName = likeCounter.getAttribute('data-country');
+      const likeData = involvementApiData.find(likeItem => likeItem.item_id === countryName);
+      const likes = likeData ? likeData.likes : 0;
+      likeCounter.textContent = likes;
     });
   } catch (error) {
-    console.error('Error updating like counter:', error);
+    console.error('Error updating like counters:', error);
   }
 }
 
-document.addEventListener('DOMContentLoaded', fetchCountries);
-
-document.addEventListener('click', async (event) => {
-  if (event.target.classList.contains('icon-btn')) {
-    const iconBtn = event.target;
-    const countryName = iconBtn.getAttribute('data-country');
-    try {
-      const success = await sendLikeRequest({ name: countryName});
-      if (success) {
-        await updateLikeCounter();
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }
-});
-
+// Call the fetchData function on page load
+document.addEventListener('DOMContentLoaded', fetchData);
 
