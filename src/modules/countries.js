@@ -7,12 +7,6 @@ const getcountry = async () => {
     data.forEach((item) => {
       postcountry(item);
     });
-
-    // Call updateLikeCounter after adding countries to the DOM
-    updateLikeCounter();
-
-    // Attach event listeners to like buttons
-    attachLikeEventListeners();
   } catch (error) {
     console.log('Error');
   }
@@ -28,18 +22,20 @@ const postcountry = async (data) => {
       <img src=${data.flags.svg} class="card-img-top" alt="..." style="object-fit: cover; width: 100%; height: 12rem;">
       <div class="card-body">
         <h5>${data.name.common}</h5>
+<div class="like">
+          <button  class="icon-btn btn-like" data-country="${data.name.common}">
+  <i class="far fa-heart"></i>
+</button>
+
+          <span class="like-counter">0</span>
+        </div>
         <div class="comment">
           <button type="button" class="btn btn-commentt btn-primary" data-country="${data.name.common}">Comment</button>
         </div>
         <div class="reservation">
           <button type="button" class="btn btn-comment btn-success btn-reservation" data-country="${data.name.common}">Reservations</button>
         </div>
-        <div class="like">
-          <button type="button" class="btn btn-like" data-country="${data.name.common}">
-            <i class="far fa-heart"></i>
-          </button>
-          <span class="like-counter">0</span>
-        </div>
+        
       </div>
     </div>`;
 
