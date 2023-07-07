@@ -18,19 +18,43 @@ const openPopup = async (countryDetails) => {
   countryNameEl.textContent = countryDetails.name.common;
 
   const countryPopulationEl = document.createElement('div');
-  countryPopulationEl.classList.add('country-population');
+  countryPopulationEl.classList.add(
+    'country-population',
+    'container',
+    'custom-container',
+    'shadow-lg',
+    'bg-gradient-success'
+  );
   countryPopulationEl.textContent = `Population: ${countryDetails.population}`;
 
   const countryCapitalEl = document.createElement('div');
-  countryCapitalEl.classList.add('country-capital');
+  countryCapitalEl.classList.add(
+    'country-capital',
+    'container',
+    'custom-container',
+    'shadow-lg',
+    'bg-gradient-success'
+  );
   countryCapitalEl.textContent = `Capital: ${countryDetails.capital}`;
 
   const countryAreaEl = document.createElement('div');
-  countryAreaEl.classList.add('country-area');
+  countryAreaEl.classList.add(
+    'country-area',
+    'container',
+    'custom-container',
+    'shadow-lg',
+    'bg-gradient-success'
+  );
   countryAreaEl.textContent = `Area: ${countryDetails.area} km²`;
 
   const countryContinentEl = document.createElement('div');
-  countryContinentEl.classList.add('country-continent');
+  countryContinentEl.classList.add(
+    'country-continent',
+    'container',
+    'custom-container',
+    'shadow-lg',
+    'bg-gradient-success'
+  );
   countryContinentEl.textContent = `Continent: ${countryDetails.region}`;
 
   const commentsContainer = document.createElement('div');
@@ -54,15 +78,15 @@ const openPopup = async (countryDetails) => {
   const nameInput = document.createElement('input');
   nameInput.setAttribute('type', 'text');
   nameInput.setAttribute('placeholder', 'Your Name');
-  nameInput.classList.add('name-input');
+  nameInput.classList.add('name-input', 'form-control');
 
   const commentInput = document.createElement('textarea');
   commentInput.setAttribute('placeholder', 'Your Comment');
-  commentInput.classList.add('comment-input');
+  commentInput.classList.add('comment-input', 'form-control');
 
   const submitButton = document.createElement('button');
   submitButton.setAttribute('type', 'submit');
-  submitButton.classList.add('submit-button');
+  submitButton.classList.add('submit-button', 'btn', 'btn-primary');
   submitButton.textContent = 'Submit';
 
   commentsForm.appendChild(nameInput);
@@ -94,18 +118,47 @@ const openPopup = async (countryDetails) => {
     overlay.style.display = 'none';
   });
 
+  // Make displayfunction to display comment from api to screen
   const displayComment = (comment) => {
     const commentEl = document.createElement('div');
     commentEl.classList.add('comment');
 
-    const commentText = document.createElement('div');
-    commentText.classList.add('comment-text');
+    const commentText = document.createElement('li');
+    commentText.classList.add(
+      'comment-text',
+      'container',
+      'custom-container',
+      'shadow-sm'
+    );
 
-    const commentInfo = `${comment.date} - ${comment.username}: ${comment.comment}`;
+    let commentDate;
+    try {
+      // Try parsing the date string into a Date object
+      commentDate = new Date(comment.creation_date);
+    } catch (error) {
+      console.log('Error parsing date:', error);
+      commentDate = null;
+    }
+
+    let commentDateString = '';
+    if (commentDate && !isNaN(commentDate)) {
+      const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+      commentDateString = commentDate.toLocaleDateString(undefined, options);
+    }
+
+    const commentInfo = `${commentDateString}  ${
+      comment ? comment.username : ''
+    }: ${comment ? comment.comment : ''}`;
     commentText.textContent = commentInfo;
 
     commentEl.appendChild(commentText);
     commentsList.appendChild(commentEl);
+
+    const commentCount = commentsList.querySelectorAll('.comment').length || 0;
+    if (commentCount === 0) {
+      commentsCount.textContent = 'Comment (0)';
+    }
+    commentsCount.textContent = `Comment (${commentCount})`;
   };
 
   // Fetch and display comments
@@ -117,9 +170,8 @@ const openPopup = async (countryDetails) => {
     );
     const comments = await response.json();
     const commentCount = comments.length;
-    const commentText = commentCount !== 0 ? `Comment(${commentCount})` : 'Comment(0)';
+    const commentText = commentCount > 0 ? `Comment (${commentCount})` : 'Comment (0)';
     commentsCount.textContent = commentText;
-
     comments.forEach((comment) => {
       displayComment(comment);
     });
@@ -133,18 +185,19 @@ const openPopup = async (countryDetails) => {
     const comment = commentInput.value;
 
     if (!name || !comment) {
-      // Check if name or comment input is empty
       return;
     }
 
     nameInput.value = '';
     commentInput.value = '';
 
-    const currentDate = new Date().toISOString(); // Save current date in ISO format
+    const currentDate = new Date().toLocaleDateString(); // Save current date in ISO format
 
     try {
       const response = await fetch(
-        `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/FjhFMUdws0lCxR3eXCdS/comments`,
+        `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/FjhFMUdws0lCxR3eXCdS/comments?item_id=${encodeURIComponent(
+          countryDetails.name.common
+        )}`,
         {
           method: 'POST',
           headers: {
@@ -165,8 +218,27 @@ const openPopup = async (countryDetails) => {
           date: currentDate,
         };
         displayComment(newComment);
-        const commentCount = commentsList.childElementCount;
-        commentsCount.textContent = `${commentCount} Comment${commentCount !== 1 ? 's' : ''}`;
+
+        // Fetch and display all comments again
+        const commentsResponse = await fetch(
+          `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/FjhFMUdws0lCxR3eXCdS/comments?item_id=${encodeURIComponent(
+            countryDetails.name.common
+          )}`
+        );
+        const comments = await commentsResponse.json();
+        const commentCount = comments.length;
+        const commentText =
+          commentCount === 0 ? 'Comment (0)' : `Comment (${commentCount})`;
+        commentsCount.textContent = commentText;
+
+        // Clear the existing comments
+        commentsList.innerHTML = '';
+
+        if (commentCount > 0) {
+          comments.forEach((comment) => {
+            displayComment(comment);
+          });
+        }
       } else {
         console.log('Error: Failed to save comment');
       }
@@ -177,6 +249,8 @@ const openPopup = async (countryDetails) => {
 
   document.body.appendChild(popContainer);
 };
+
+// event listenner for comment button
 
 document.addEventListener('click', async (event) => {
   if (event.target.classList.contains('btn-commentt')) {

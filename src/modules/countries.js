@@ -41,4 +41,3 @@ const postcountry = async (data) => {
 
   countries.appendChild(country);
 };
-
