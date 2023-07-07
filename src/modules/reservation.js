@@ -1,10 +1,33 @@
-import getReservationCount from './reservationcounter.js';
+// import getReservationCount from './reservationcounter.js';
 
 const appId = 'FjhFMUdws0lCxR3eXCdS';
 
+let reservationPopup = null;
+const getReservationCount = async (itemId) => {
+  let countervalue = 0;
+  const getResponse = await fetch(
+    `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${appId}/reservations?item_id=${itemId}`
+  );
+  if (getResponse.ok) {
+    const events = await getResponse.json();
+    events.forEach(() => {
+      countervalue = countervalue + 1;
+    });
+
+    return countervalue;
+  }
+  return 0;
+};
+
 const createReservationForm = async (itemId) => {
+  // Remove existing popup if present
+  if (reservationPopup) {
+    reservationPopup.remove();
+  }
+
   const popupContainer = document.createElement('div');
   popupContainer.className = 'popup';
+  reservationPopup = popupContainer;
 
   const formContainer = document.createElement('div');
   formContainer.className = 'form-container';
@@ -46,6 +69,7 @@ const createReservationForm = async (itemId) => {
   closeButton.innerHTML = '&times;';
   closeButton.addEventListener('click', () => {
     popupContainer.remove();
+    reservationPopup = null;
   });
 
   const nameInput = document.createElement('input');
@@ -92,7 +116,6 @@ const createReservationForm = async (itemId) => {
   });
 
   // Append the elements to the form container
-  
   popupContainer.appendChild(formContainer);
   document.body.appendChild(popupContainer);
   formContainer.appendChild(closeButton);
@@ -101,9 +124,9 @@ const createReservationForm = async (itemId) => {
   formContainer.appendChild(countryPopulationEl);
   formContainer.appendChild(countryCapitalEl);
   formContainer.appendChild(countryAreaEl);
-  formContainer.appendChild(countryContinentEl);  
+  formContainer.appendChild(countryContinentEl);
   formContainer.appendChild(counterElem);
-  formContainer.appendChild(await getReservation(itemId, formContainer));
+  formContainer.appendChild(await getReservation(itemId));
   formContainer.appendChild(title);
   formContainer.appendChild(nameInput);
   formContainer.appendChild(startDateInput);
@@ -134,19 +157,17 @@ document.addEventListener('click', function (event) {
 const getReservation = async (itemId) => {
   const getResponse = await fetch(
     `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${appId}/reservations?item_id=${itemId}`
-  ); 
+  );
   const reservationInfo = document.createElement('div');
   if (getResponse.ok) {
-    const events = await getResponse.json(); 
-   
-    events.forEach((event) => { 
+    const events = await getResponse.json();
+    events.forEach((event) => {
       reservationInfo.innerHTML += `
-              <h3>Reservation Details:</h3>
-              <p>Name: ${event.username}</p>
-              <p>Start Date: ${event.date_start}</p>
-              <p>End Date: ${event.date_end}</p>
-             `;
-      //formContainer.appendChild(reservationInfo);
+        <h3>Reservation Details:</h3>
+        <p>Name: ${event.username}</p>
+        <p>Start Date: ${event.date_start}</p>
+        <p>End Date: ${event.date_end}</p>
+      `;
     });
 
     return reservationInfo;

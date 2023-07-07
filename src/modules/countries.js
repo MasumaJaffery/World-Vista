@@ -1,11 +1,18 @@
+import './likeitems.js';
 const getcountry = async () => {
   try {
     const response = await fetch('https://restcountries.com/v3.1/all');
     const data = await response.json();
-    console.log(data)
+    console.log(data);
     data.forEach((item) => {
       postcountry(item);
     });
+
+    // Call updateLikeCounter after adding countries to the DOM
+    updateLikeCounter();
+
+    // Attach event listeners to like buttons
+    attachLikeEventListeners();
   } catch (error) {
     console.log('Error');
   }
@@ -27,7 +34,14 @@ const postcountry = async (data) => {
         <div class="reservation">
           <button type="button" class="btn btn-comment btn-success btn-reservation" data-country="${data.name.common}">Reservations</button>
         </div>
+        <div class="like">
+          <button type="button" class="btn btn-like" data-country="${data.name.common}">
+            <i class="far fa-heart"></i>
+          </button>
+          <span class="like-counter">0</span>
+        </div>
       </div>
     </div>`;
+
   countries.appendChild(country);
 };
