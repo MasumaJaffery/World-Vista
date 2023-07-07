@@ -7,12 +7,6 @@ const getcountry = async () => {
     data.forEach((item) => {
       postcountry(item);
     });
-
-    // Call updateLikeCounter after adding countries to the DOM
-    updateLikeCounter();
-
-    // Attach event listeners to like buttons
-    attachLikeEventListeners();
   } catch (error) {
     console.log('Error');
   }
