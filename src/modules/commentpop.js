@@ -136,7 +136,8 @@ const openPopup = async (countryDetails) => {
       // Try parsing the date string into a Date object
       commentDate = new Date(comment.creation_date);
     } catch (error) {
-      return error.message;
+      console.log('Error parsing date:', error);
+      commentDate = null;
     }
 
     let commentDateString = '';
@@ -176,7 +177,7 @@ const openPopup = async (countryDetails) => {
       displayComment(comment);
     });
   } catch (error) {
-    return error.message;
+    console.log('Error:', error);
   }
 
   commentsForm.addEventListener('submit', async (event) => {
@@ -240,7 +241,7 @@ const openPopup = async (countryDetails) => {
           });
         }
       } else {
-        return error.message;
+        return null;
       }
     } catch (error) {
       return error.message;
