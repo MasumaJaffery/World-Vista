@@ -136,8 +136,7 @@ const openPopup = async (countryDetails) => {
       // Try parsing the date string into a Date object
       commentDate = new Date(comment.creation_date);
     } catch (error) {
-      console.log('Error parsing date:', error);
-      commentDate = null;
+      return error.message;
     }
 
     let commentDateString = '';
@@ -177,7 +176,7 @@ const openPopup = async (countryDetails) => {
       displayComment(comment);
     });
   } catch (error) {
-    console.log('Error:', error);
+    return error.message;
   }
 
   commentsForm.addEventListener('submit', async (event) => {
@@ -241,10 +240,10 @@ const openPopup = async (countryDetails) => {
           });
         }
       } else {
-        console.log('Error: Failed to save comment');
+        return error.message;
       }
     } catch (error) {
-      console.log('Error:', error);
+      return error.message;
     }
   });
 
@@ -264,7 +263,7 @@ document.addEventListener('click', async (event) => {
       const [countryDetails] = await response.json();
       await openPopup(countryDetails);
     } catch (error) {
-      console.log('Error:', error);
+      return error.message;
     }
   }
 });

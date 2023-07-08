@@ -16,7 +16,7 @@ async function fetchData() {
     const combinedData = combineData(baseApiData, involvementApiData);
     updateScreen(combinedData);
   } catch (error) {
-    console.error('Error fetching data:', error);
+    return error.message;
   }
 }
 
@@ -53,7 +53,7 @@ function updateScreen(data) {
           await updateLikeCounters();
         }
       } catch (error) {
-        console.error(error);
+        return error.message;
       }
     });
   });
@@ -91,8 +91,7 @@ async function sendLikeRequest(countryName) {
       return false;
     }
   } catch (error) {
-    console.error('Error liking item:', countryName, error);
-    return false;
+    return error.message;
   }
 }
 
@@ -118,7 +117,7 @@ async function updateLikeCounters() {
       localStorage.setItem(countryName, JSON.stringify(storedLikes));
     });
   } catch (error) {
-    console.error('Error updating like counters:', error);
+    return error.message;
   }
 }
 

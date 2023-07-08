@@ -142,8 +142,7 @@ const getCountryDetails = async (countryName) => {
     const [countryDetails] = await response.json();
     return countryDetails;
   } catch (error) {
-    console.log('Error:', error);
-    return null;
+    return error.message;
   }
 };
 
