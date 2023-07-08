@@ -3,13 +3,11 @@ const getcountry = async () => {
   try {
     const response = await fetch('https://restcountries.com/v3.1/all');
     const data = await response.json();
-    console.log(data);
     data.forEach((item) => {
       postcountry(item);
     });
-
   } catch (error) {
-    console.log('Error');
+    return error.message;
   }
 };
 getcountry();

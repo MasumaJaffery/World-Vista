@@ -80,14 +80,12 @@ async function sendLikeRequest(countryName) {
     });
 
     if (response.ok) {
-      console.log('Like added for item:', countryName);
       const likeData = JSON.parse(localStorage.getItem(countryName)) || {};
       likeData.likes = (likeData.likes || 0) + 1;
       localStorage.setItem(countryName, JSON.stringify(likeData));
 
       return true;
     } else {
-      console.error('Failed to like item:', countryName);
       return false;
     }
   } catch (error) {
