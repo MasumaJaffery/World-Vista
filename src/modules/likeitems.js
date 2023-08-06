@@ -16,7 +16,7 @@ async function fetchData() {
     const combinedData = combineData(baseApiData, involvementApiData);
     updateScreen(combinedData);
   } catch (error) {
-    return error.message;
+    console.error('Error fetching data:', error);
   }
 }
 
@@ -53,7 +53,7 @@ function updateScreen(data) {
           await updateLikeCounters();
         }
       } catch (error) {
-        return error.message;
+        console.error(error);
       }
     });
   });
@@ -80,16 +80,19 @@ async function sendLikeRequest(countryName) {
     });
 
     if (response.ok) {
+      console.log('Like added for item:', countryName);
       const likeData = JSON.parse(localStorage.getItem(countryName)) || {};
       likeData.likes = (likeData.likes || 0) + 1;
       localStorage.setItem(countryName, JSON.stringify(likeData));
 
       return true;
     } else {
+      console.error('Failed to like item:', countryName);
       return false;
     }
   } catch (error) {
-    return error.message;
+    console.error('Error liking item:', countryName, error);
+    return false;
   }
 }
 
@@ -115,7 +118,7 @@ async function updateLikeCounters() {
       localStorage.setItem(countryName, JSON.stringify(storedLikes));
     });
   } catch (error) {
-    return error.message;
+    console.error('Error updating like counters:', error);
   }
 }
 
